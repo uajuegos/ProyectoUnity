@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
+using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
-    {
+    { 
+        enum State { ATACK, HUNTING}
+        State state;
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
@@ -14,8 +17,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         int ataque = 0;
 
+        public Collider colHammer;
+        public Collider colFoot;
+
         private void Start()
         {
+            state = State.HUNTING;
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -50,15 +57,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             float v = CrossPlatformInputManager.GetAxis("Vertical");
             bool crouch = Input.GetKey(KeyCode.C);
             bool atack = Input.GetKeyDown(KeyCode.V);
+            bool spell = Input.GetKeyDown(KeyCode.B);
 
+            int spellAux = 0;
+            if (spell) spellAux = 1;
             //Bonus de golpes
-
+            int atacar = 0;
             if (atack)
             {
-                ataque = (ataque  % 2)+1;
-                //ataque++;
+                state = State.ATACK;
+                ataque = (ataque  % 3)+1;
+                atacar = ataque;
             }
-            Debug.Log(ataque);
+                     
 
             // calculate move direction to pass to character
             if (m_Cam != null)
@@ -79,10 +90,25 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 
             // pass all parameters to the character control script
-            if (atack)
-             m_Character.Move(m_Move, crouch, ataque, m_Jump);
-            else m_Character.Move(m_Move, crouch, 0, m_Jump);
+             m_Character.Move(m_Move, crouch, atacar, spellAux, m_Jump);
             m_Jump = false;
+
+            if(state == State.ATACK)
+            {
+                colFoot.enabled = true;
+                colHammer.enabled = true;
+            }
+            else if(state == State.HUNTING)
+            {
+                colFoot.enabled = false;
+                colHammer.enabled = false;
+
+            }
+
+            if (m_Character.IsGrouding())
+            {
+                state = State.HUNTING;
+            }
         }
     }
 }

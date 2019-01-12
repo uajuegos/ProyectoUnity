@@ -20,7 +20,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Animator m_Animator;
 		bool m_IsGrounded;
         int m_IsAttacking = 0;
-		float m_OrigGroundCheckDistance;
+        int m_IsSpell = 0;
+        float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
 		float m_TurnAmount;
 		float m_ForwardAmount;
@@ -42,9 +43,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
-
-
-		public void Move(Vector3 move, bool crouch, int atack, bool jump)
+        public bool IsGrouding()
+        {
+            return m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded");
+        }
+        public void Die()
+        {
+            m_Animator.SetBool("Alive", false);
+        }
+		public void Move(Vector3 move, bool crouch, int atack, int spell, bool jump)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -62,7 +69,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				HandleGroundedMovement(crouch,atack, jump);
+				HandleGroundedMovement(crouch,atack,spell, jump);
 			}
 			else
 			{
@@ -124,7 +131,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);
             m_Animator.SetInteger("Atack", m_IsAttacking);
-			if (!m_IsGrounded)
+            m_Animator.SetInteger("Hechizo", m_IsSpell);
+
+            if (!m_IsGrounded)
 			{
 				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
 			}
@@ -165,7 +174,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		void HandleGroundedMovement(bool crouch, int atack, bool jump)
+		void HandleGroundedMovement(bool crouch, int atack, int spell, bool jump)
 		{
            
 			// check whether conditions are right to allow a jump:
@@ -177,7 +186,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
 			}
-            if(!jump && !crouch && atack != 0 && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+            if(!jump && !crouch && atack != 0)
             {
                 m_Rigidbody.velocity = new Vector3(0,0,0);
                 m_IsAttacking = atack;
@@ -186,7 +195,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_IsAttacking = 0;
             }
-		}
+            if(!crouch && spell != 0)
+            {
+                m_Rigidbody.velocity = new Vector3(0, 0, 0);
+                m_IsSpell = spell;
+            }
+            else
+            {
+                m_IsSpell = 0;
+            }
+        }
 
 		void ApplyExtraTurnRotation()
 		{

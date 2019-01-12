@@ -189,7 +189,7 @@ ModelImporter:
       name: Standing Melee Attack 360 Low
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 65
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
