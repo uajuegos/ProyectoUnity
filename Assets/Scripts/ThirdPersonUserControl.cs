@@ -65,8 +65,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             int atacar = 0;
             if (atack)
             {
-                state = State.ATACK;
-                ataque = (ataque  % 3)+1;
+                StartCoroutine(StartAttack());
+                 ataque = (ataque  % 3)+1;
                 atacar = ataque;
             }
                      
@@ -109,6 +109,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 state = State.HUNTING;
             }
+        }
+
+        IEnumerator StartAttack()
+        {
+            yield return new WaitForSeconds(.5f);
+            state = State.ATACK;
         }
     }
 }
