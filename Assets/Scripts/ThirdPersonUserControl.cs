@@ -16,9 +16,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         int ataque = 0;
-
+        bool blockSpell = false;
         public Collider colHammer;
         public Collider colFoot;
+        MagicBall mgBall;
 
         private void Start()
         {
@@ -37,6 +38,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+            mgBall = GetComponent<MagicBall>();
         }
 
 
@@ -60,7 +62,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             bool spell = Input.GetKeyDown(KeyCode.B);
 
             int spellAux = 0;
-            if (spell) spellAux = 1;
+            if (spell && !blockSpell)
+            {
+                blockSpell = true;
+                StartCoroutine(StartSpell());
+                spellAux = 1;
+            }
             //Bonus de golpes
             int atacar = 0;
             if (atack)
@@ -115,6 +122,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             yield return new WaitForSeconds(.5f);
             state = State.ATACK;
+        }
+        IEnumerator StartSpell()
+        {
+            yield return new WaitForSeconds(1.25f);
+            mgBall.SpawnBall(transform.forward);
+            blockSpell = false;
         }
     }
 }

@@ -7,38 +7,39 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class PlayerDamage : MonoBehaviour {
     public Text lifeText;
     int life = 100;
-    int contColision;
     private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-                                              // Use this for initialization
+    bool block = false;
     void Start () {
-        contColision = 50;
         life = 100;
         lifeText.text = "Life: " + life.ToString();
         m_Character = GetComponent<ThirdPersonCharacter>();
     }
     private void OnCollisionStay(Collision collision)
     {
-        
+        m_Character.Hit(false);
         if (collision.transform.gameObject.layer == 11) {
-            if (contColision == 50)
+            if (!block)
             {
                 life -= 5;
                 lifeText.text = "Life: " + life.ToString();
-                if(life <= 0)
+                block = true;
+               StartCoroutine(React());
+
+                if (life <= 0)
                 {
                     m_Character.Die();
                 }
-                contColision = 0;
+               
             }
-            contColision++;
+           
         }
     }
-    private void OnCollisionExit(Collision collision)
+  
+    IEnumerator React()
     {
-        if (collision.transform.gameObject.layer == 11)
-        {
-            contColision = 50;
-        }
+        m_Character.Hit(true);
+        yield return new WaitForSeconds(1);
+        m_Character.Hit(false);
+        block = false;
     }
-
 }

@@ -51,7 +51,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             m_Animator.SetBool("Alive", false);
         }
-		public void Move(Vector3 move, bool crouch, int atack, int spell, bool jump)
+        public void Hit(bool hit)
+        {
+            m_Animator.SetBool("Hit", hit);
+        }
+        public void Move(Vector3 move, bool crouch, int atack, int spell, bool jump)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
