@@ -9,6 +9,7 @@ public class Mummy : MonoBehaviour {
     State state;
     Rigidbody rb;
     public GameObject target;
+    public GameObject particleSystem;
     public float vel = 1;
     public int life = 5;
     float timeToRefresh = 0.01f;
@@ -67,13 +68,14 @@ public class Mummy : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Hammer" || other.name == "RigRFoot") StartCoroutine(Hit());
+        if (other.name == "Hammer" || other.name == "RigRFoot" || other.name == "Firebola") StartCoroutine(Hit());
     }
     IEnumerator Hit()
     {
         m_Animator.SetBool("Hit",true);
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Hit", false);
+        Destroy(Instantiate(particleSystem, transform.position, transform.rotation),1.5f);
         Destroy(gameObject);
     }
     IEnumerator Attack()
