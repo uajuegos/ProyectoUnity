@@ -121,9 +121,9 @@ public class SmoothCamera : MonoBehaviour {
         if (Physics.Raycast(checkPos, target.position - checkPos + Vector3.up * 0.3f, out hit, offsetMag))
             // Si no es el target...
            
-            if (Physics.OverlapBox(transform.position, new Vector3(0.1f, 0.1f, 0.1f)).Length <= 0)
+            /*if (Physics.OverlapBox(transform.position, new Vector3(0.1f, 0.1f, 0.1f)).Length <= 0)
                 col = false;
-            else col = true;
+            else col = true;*/
             if (hit.transform != target || col)
             {
                 // ... la posición no nos sirve.
