@@ -72,11 +72,16 @@ public class Mummy : MonoBehaviour {
     }
     IEnumerator Hit()
     {
-        m_Animator.SetBool("Hit",true);
+        life -= 5;
+        m_Animator.SetBool("Hit", true);
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Hit", false);
-        Destroy(Instantiate(particleSystem, transform.position, transform.rotation),1.5f);
-        Destroy(gameObject);
+        if (life < 0)
+        {
+            
+            Destroy(Instantiate(particleSystem, transform.position, transform.rotation), 1.5f);
+            Destroy(gameObject);
+        }
     }
     IEnumerator Attack()
     {
