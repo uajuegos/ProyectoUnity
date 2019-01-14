@@ -19,17 +19,18 @@ public class ChangeProcessor : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-       
-        
-            ppb.profile = underwaterProfile;
+
+        GM.gm.setUnderwater(true);
+        ppb.profile = underwaterProfile;
        
         
     }
     private void OnTriggerExit(Collider other)
     {
         
-       
-            ppb.profile = normal;
+        GM.gm.setUnderwater(false);
+
+        ppb.profile = normal;
         
     }
 }

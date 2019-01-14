@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="EffectPreset" id="{f6fc3873-3005-4282-8472-6dd279b127f4}">
+        <property name="name">
+            <value>Reverb</value>
+        </property>
+        <relationship name="folder">
+            <destination>{27d7cf09-4b8c-47fd-986f-23b7d5125bbd}</destination>
+        </relationship>
+        <relationship name="effect">
+            <destination>{56c05a34-c2f4-446f-ab89-ef0347deb199}</destination>
+        </relationship>
+    </object>
+    <object class="SFXReverbEffect" id="{56c05a34-c2f4-446f-ab89-ef0347deb199}">
+        <property name="lowShelfGain">
+            <value>12</value>
+        </property>
+        <property name="dryLevel">
+            <value>10</value>
+        </property>
+    </object>
+</objects>
