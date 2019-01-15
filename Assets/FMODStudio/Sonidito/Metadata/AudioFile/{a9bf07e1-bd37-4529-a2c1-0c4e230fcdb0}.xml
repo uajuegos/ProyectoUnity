@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{a9bf07e1-bd37-4529-a2c1-0c4e230fcdb0}">
+        <property name="assetPath">
+            <value>Steps/New Folder/FOOTSTEP_Trainers_Asphalt_Run_RR7_mono.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.38</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{8a829aac-9855-4b2c-8335-9ca11ec762f5}</destination>
+        </relationship>
+    </object>
+</objects>

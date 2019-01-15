@@ -265,5 +265,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 			}
 		}
-	}
+
+        //Getters/Setters
+        public bool M_IsGrounded
+        {
+            get { return m_IsGrounded; }
+        }
+
+    }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5e7fa8fd-fc91-429c-96c7-c0558588f082}">
+        <property name="assetPath">
+            <value>Chain/Small Chain-SoundBible.com-131355615.ogg</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.27190476190476193</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{8a829aac-9855-4b2c-8335-9ca11ec762f5}</destination>
+        </relationship>
+    </object>
+</objects>

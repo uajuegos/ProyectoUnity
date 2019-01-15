@@ -17,7 +17,7 @@ public class Tocadiscos : MonoBehaviour {
 
         SoundManager.sm.SetFMODVector(out pos.position, transform.position);
         SoundManager.sm.SetFMODVector(out pos.up, transform.up);
-        SoundManager.sm.SetFMODVector(out pos.forward, new Vector3(-1,0,0));
+        SoundManager.sm.SetFMODVector(out pos.forward, new Vector3(0,0,-1));
         eventInstance.set3DAttributes(pos);
         panelKey.SetActive(false);
        

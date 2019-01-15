@@ -19,7 +19,6 @@ public class ChangeProcessor : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-
         GM.gm.setUnderwater(true);
         ppb.profile = underwaterProfile;
        
@@ -27,7 +26,6 @@ public class ChangeProcessor : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other)
     {
-        
         GM.gm.setUnderwater(false);
 
         ppb.profile = normal;

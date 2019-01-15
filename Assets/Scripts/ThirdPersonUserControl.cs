@@ -21,6 +21,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public Collider colFoot;
         MagicBall mgBall;
         float velH, velV;
+        
+
 
         private void Start()
         {
@@ -146,6 +148,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float VelV
         {
             get { return velV; }
+        }
+        public bool IsGrounded
+        {
+            get { return m_Character.M_IsGrounded; }
         }
     }
     

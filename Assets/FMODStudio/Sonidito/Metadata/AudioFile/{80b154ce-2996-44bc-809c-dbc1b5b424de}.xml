@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="AudioFile" id="{80b154ce-2996-44bc-809c-dbc1b5b424de}">
         <property name="assetPath">
-            <value>Steps/FOOTSTEP_Trainers_Gravel_Compact_Run_RR1_mono.wav</value>
+            <value>Steps/Grave/FOOTSTEP_Trainers_Gravel_Compact_Run_RR1_mono.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>

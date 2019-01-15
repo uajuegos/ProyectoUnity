@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour {
         if (sm.system.loadBankFile(path + "/Musicas.bank", LOAD_BANK_FLAGS.NORMAL, out sm.musicBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
         if (sm.system.loadBankFile(path + "/Fx.bank", LOAD_BANK_FLAGS.NORMAL, out sm.fxBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
 
+        
     }
     // Use this for initialization
     void Start () {
@@ -54,6 +55,15 @@ public class SoundManager : MonoBehaviour {
         
     }
 	
+    public void loadSound(string name, out FMOD.Sound sound)
+    {
+        //Cargar sonido 
+        lowLevelSystem.createSound(Application.dataPath+"/Sounds/"+name,FMOD.MODE._3D|FMOD.MODE.LOOP_NORMAL,out sound);
+    }
+    public void setSource(out FMOD.Channel channel, FMOD.Sound sound)
+    {
+        lowLevelSystem.playSound(sound,new FMOD.ChannelGroup(), false, out channel);
+    }
     public void UpdateSM()
     {
         sm.system.update();
@@ -74,6 +84,10 @@ public class SoundManager : MonoBehaviour {
   
     private void OnApplicationQuit()
     {
+        masterBank.unload();
+        stringBank.unload();
+        musicBank.unload();
+        fxBank.unload();
         sm.system.release();
         
     }
@@ -95,5 +109,9 @@ public class SoundManager : MonoBehaviour {
         v.x = vAux.x;
         v.y = vAux.y;
         v.z = vAux.z;
+    }
+    public void CreateGeometry(out FMOD.Geometry g, int polygons, int vertex)
+    {
+        lowLevelSystem.createGeometry(polygons, vertex, out g);
     }
 }

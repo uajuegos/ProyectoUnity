@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class GM : MonoBehaviour {
 
-    public enum PlayerState { WANDER, COMBAT, SWIM };
-    PlayerState state = PlayerState.WANDER;
+    
     public static GM gm;
     FMOD.Studio.EventInstance eventInstance;
     bool mute = false;
@@ -46,16 +45,12 @@ public class GM : MonoBehaviour {
         SoundManager.sm.UpdateSM();
     }
 
-    public PlayerState State
+    public void ChangeMusic(int state)
     {
-        get { return state; }
-        set {
-            state = value;
-            
-            eventInstance.setParameterValue("War", (int)(state));
-            SoundManager.sm.UpdateSM();
-        }
+        eventInstance.setParameterValue("War", (int)(state));
+        SoundManager.sm.UpdateSM();
     }
+   
     public void muteMusic()
     {
         mute = !mute;
