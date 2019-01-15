@@ -20,6 +20,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public Collider colHammer;
         public Collider colFoot;
         MagicBall mgBall;
+        float velH, velV;
 
         private void Start()
         {
@@ -55,8 +56,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
+            velH = CrossPlatformInputManager.GetAxis("Horizontal");
+            velV = CrossPlatformInputManager.GetAxis("Vertical");
            
             bool crouch = Input.GetKey(KeyCode.C);
             bool atack = Input.GetKeyDown(KeyCode.V);
@@ -86,17 +87,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 // calculate camera relative direction to move:
                 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = v*m_CamForward + h*m_Cam.right;
+                m_Move = velV*m_CamForward + velH*m_Cam.right;
             }
             else
             {
                 // we use world-relative directions in the case of no main camera
                 if(!atack)
-                    m_Move = v*Vector3.forward + h*Vector3.right;
+                    m_Move = velV*Vector3.forward + velH*Vector3.right;
             }
 #if !MOBILE_INPUT
-			// walk speed multiplier
-	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
+            // walk speed multiplier
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                m_Move *= 0.5f;
+                velV *= 0.5f;
+                velH *= 0.5f;
+            }
 #endif
 
             // pass all parameters to the character control script
@@ -133,7 +139,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             blockSpell = false;
         }
 
-
+        public float VelH
+        {
+            get { return velH; }
+        }
+        public float VelV
+        {
+            get { return velV; }
+        }
     }
     
 }

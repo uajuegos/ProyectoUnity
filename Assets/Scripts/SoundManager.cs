@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour {
     FMOD.Studio.Bank masterBank;
     FMOD.Studio.Bank stringBank;
     FMOD.Studio.Bank musicBank;
+    FMOD.Studio.Bank fxBank;
+
 
     string path;
     private void Awake()
@@ -41,6 +43,8 @@ public class SoundManager : MonoBehaviour {
         if (sm.system.loadBankFile(path + "/Master Bank.bank", LOAD_BANK_FLAGS.NORMAL, out sm.masterBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
         if (sm.system.loadBankFile(path + "/Master Bank.strings.bank", LOAD_BANK_FLAGS.NORMAL, out sm.stringBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
         if (sm.system.loadBankFile(path + "/Musicas.bank", LOAD_BANK_FLAGS.NORMAL, out sm.musicBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
+        if (sm.system.loadBankFile(path + "/Fx.bank", LOAD_BANK_FLAGS.NORMAL, out sm.fxBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
+
     }
     // Use this for initialization
     void Start () {

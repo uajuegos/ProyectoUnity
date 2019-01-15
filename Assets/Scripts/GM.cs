@@ -11,6 +11,9 @@ public class GM : MonoBehaviour {
     PlayerState state = PlayerState.WANDER;
     public static GM gm;
     FMOD.Studio.EventInstance eventInstance;
+    bool mute = false;
+    public Sprite[] muteSprites;
+    public GameObject buttonMute;
    
     private void Awake()
     {
@@ -51,6 +54,19 @@ public class GM : MonoBehaviour {
             
             eventInstance.setParameterValue("War", (int)(state));
             SoundManager.sm.UpdateSM();
+        }
+    }
+    public void muteMusic()
+    {
+        mute = !mute;
+        if (mute)
+        {
+            buttonMute.GetComponent<Image>().sprite = muteSprites[1];
+            eventInstance.setVolume(0);
+        }else
+        {
+            buttonMute.GetComponent<Image>().sprite = muteSprites[0];
+            eventInstance.setVolume(1);
         }
     }
 }
