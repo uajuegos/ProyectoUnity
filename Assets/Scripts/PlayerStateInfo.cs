@@ -12,12 +12,14 @@ public class PlayerStateInfo : MonoBehaviour {
     ThirdPersonUserControl thUserControl;
     FMOD.Studio.EventInstance stepsEvent;
     FMOD.Studio.EventInstance jumpEvent;
+    public GameObject camera;
     bool isGrounded = true;
 
     private void Start()
     {
+
         thUserControl = GetComponent<ThirdPersonUserControl>();
-        SoundManager.sm.SetListener(transform.position,Vector3.zero, new Vector3(0,0,1), transform.up);
+        SoundManager.sm.SetListener(transform.position,Vector3.zero, camera.transform.forward.normalized, transform.up);
 
         SoundManager.sm.getEvtinstance("event:/Steps2", out stepsEvent);
         stepsEvent.start();
@@ -27,7 +29,7 @@ public class PlayerStateInfo : MonoBehaviour {
     private void Update()
     {
         if (isGrounded) isGrounded = !Input.GetKeyDown(KeyCode.Space);
-        SoundManager.sm.SetListener(transform.position, Vector3.zero, new Vector3(0, 0, 1), transform.up);
+        SoundManager.sm.SetListener(transform.position, Vector3.zero, new Vector3(0,0,1), transform.up);
         float suma = 0;
        
         if (state != PlayerState.SWIM && state != PlayerState.JUMPING)

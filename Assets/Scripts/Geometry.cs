@@ -8,6 +8,7 @@ public class Geometry : MonoBehaviour {
     // Use this for initialization
     FMOD.Geometry geometry;
     BoxCollider bx;
+    public float directOclusion = 1.0f, reverbOclusion= 1.0f;
 	void Start () {
         bx = GetComponent<BoxCollider>();
 
@@ -60,7 +61,7 @@ public class Geometry : MonoBehaviour {
         vertex[1] = ver8;
         vertex[0] = ver6;
 
-        geometry.addPolygon(1.0f, 1.0f, true,8, vertex, out polygonIndex);
+        geometry.addPolygon(directOclusion, reverbOclusion, true,8, vertex, out polygonIndex);
         FMOD.VECTOR posPolygon = new FMOD.VECTOR();
         SoundManager.sm.SetFMODVector(out posPolygon, transform.position);
         geometry.setPosition(ref posPolygon);

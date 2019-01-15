@@ -16,12 +16,21 @@ public class Mummy : MonoBehaviour {
     float tempY;
     Animator m_Animator;
     bool blockAttack = false;
-	// Use this for initialization
-	void Start () {
+    FMOD.Studio.EventInstance deathInstance;
+    // Use this for initialization
+    void Start () {
         state = State.WANDERING;
         rb =gameObject.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0,0,1);
         m_Animator = GetComponent<Animator>();
+        SoundManager.sm.getEvtinstance("event:/MuerteMomia", out deathInstance);
+        FMOD.ATTRIBUTES_3D pos = new FMOD.ATTRIBUTES_3D();
+
+        SoundManager.sm.SetFMODVector(out pos.position, transform.position);
+        SoundManager.sm.SetFMODVector(out pos.up, transform.up);
+        SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
+        deathInstance.set3DAttributes(pos);
+        SoundManager.sm.UpdateSM();
     }
 
 
@@ -78,7 +87,8 @@ public class Mummy : MonoBehaviour {
         m_Animator.SetBool("Hit", false);
         if (life < 0)
         {
-            
+            deathInstance.start();
+            SoundManager.sm.UpdateSM();
             Destroy(Instantiate(particleSystem, transform.position, transform.rotation), 1.5f);
             Destroy(gameObject);
         }

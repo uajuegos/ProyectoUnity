@@ -20,12 +20,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public Collider colHammer;
         public Collider colFoot;
         MagicBall mgBall;
+        FMOD.Studio.EventInstance spellEvent;
         float velH, velV;
-        
+        public GameObject hammerAndShield;
 
 
         private void Start()
         {
+            SoundManager.sm.getEvtinstance("event:/Spell", out spellEvent);
+            SoundManager.sm.UpdateSM();
             state = State.HUNTING;
             // get the transform of the main camera
             if (Camera.main != null)
@@ -65,6 +68,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             bool atack = Input.GetKeyDown(KeyCode.V);
             bool spell = Input.GetKeyDown(KeyCode.B);
             bool dance = Input.GetKeyDown(KeyCode.F);
+            if (dance)
+            {
+                hammerAndShield.SetActive(false);
+            }
+            else
+            {
+                if(velH != 0 || VelV != 0 || atack || spell || crouch)
+                    hammerAndShield.SetActive(true);
+            }
            
 
             int spellAux = 0;
@@ -136,9 +148,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
         IEnumerator StartSpell()
         {
+            spellEvent.start();
             yield return new WaitForSeconds(1.25f);
             mgBall.SpawnBall(transform.forward);
             blockSpell = false;
+
         }
 
         public float VelH

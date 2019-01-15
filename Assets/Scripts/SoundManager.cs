@@ -38,7 +38,7 @@ public class SoundManager : MonoBehaviour {
         sm.lowLevelSystem.setSoftwareFormat(0, SPEAKERMODE._5POINT1, 0);
         sm.system.initialize(1024, FMOD.Studio.INITFLAGS.NORMAL, FMOD.INITFLAGS.NORMAL, System.IntPtr.Zero);
 
-        path = Application.dataPath + "/FMODStudio/Sonidito/Banks";
+        path = Application.dataPath + "/FMODStudio/Sonidito/Banks/Desktop";
         // Carganmos Bancos de sonidos
         if (sm.system.loadBankFile(path + "/Master Bank.bank", LOAD_BANK_FLAGS.NORMAL, out sm.masterBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
         if (sm.system.loadBankFile(path + "/Master Bank.strings.bank", LOAD_BANK_FLAGS.NORMAL, out sm.stringBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
