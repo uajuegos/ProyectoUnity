@@ -29,9 +29,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 agent.SetDestination(target.position);
 
             if (agent.remainingDistance > agent.stoppingDistance)
-                character.Move(agent.desiredVelocity, false, 0, 0,false);
+                character.Move(agent.desiredVelocity, false, 0, 0,false,false);
             else
-                character.Move(Vector3.zero, false, 0,0,false);
+                character.Move(Vector3.zero, false, 0,0,false,false);
         }
 
 

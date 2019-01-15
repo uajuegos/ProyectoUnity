@@ -73,4 +73,23 @@ public class SoundManager : MonoBehaviour {
         sm.system.release();
         
     }
+
+    public void SetListener(Vector3 pos, Vector3 vel_, Vector3 at_, Vector3 up_)
+    {
+        //listenerVel = { 0,0,0 }, up = { 0,1,0 }, at = { 0,0,-1 };
+        FMOD.ATTRIBUTES_3D attributes = new FMOD.ATTRIBUTES_3D();
+        SetFMODVector(out attributes.position, pos);
+        SetFMODVector(out attributes.velocity, vel_);
+        SetFMODVector(out attributes.up, up_);
+        SetFMODVector(out attributes.forward, at_);
+
+        sm.system.setListenerAttributes(0, attributes);
+        UpdateSM();
+    }
+    public void SetFMODVector(out FMOD.VECTOR v, Vector3 vAux)
+    {
+        v.x = vAux.x;
+        v.y = vAux.y;
+        v.z = vAux.z;
+    }
 }

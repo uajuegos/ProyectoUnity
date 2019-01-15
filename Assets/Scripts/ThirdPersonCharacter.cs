@@ -21,6 +21,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_IsGrounded;
         int m_IsAttacking = 0;
         int m_IsSpell = 0;
+        int m_IsDancing = 0; int danceType = 1;
         float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
 		float m_TurnAmount;
@@ -55,7 +56,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             m_Animator.SetBool("Hit", hit);
         }
-        public void Move(Vector3 move, bool crouch, int atack, int spell, bool jump)
+        public void Move(Vector3 move, bool crouch, int atack, int spell,bool dance, bool jump)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -73,7 +74,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				HandleGroundedMovement(crouch,atack,spell, jump);
+				HandleGroundedMovement(crouch,atack,spell,dance, jump);
 			}
 			else
 			{
@@ -136,6 +137,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("OnGround", m_IsGrounded);
             m_Animator.SetInteger("Atack", m_IsAttacking);
             m_Animator.SetInteger("Hechizo", m_IsSpell);
+            m_Animator.SetInteger("Dancing", m_IsDancing);
 
             if (!m_IsGrounded)
 			{
@@ -178,7 +180,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		void HandleGroundedMovement(bool crouch, int atack, int spell, bool jump)
+		void HandleGroundedMovement(bool crouch, int atack, int spell,bool dance, bool jump)
 		{
            
 			// check whether conditions are right to allow a jump:
@@ -199,6 +201,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_IsAttacking = 0;
             }
+
             if(!crouch && spell != 0)
             {
                 m_Rigidbody.velocity = new Vector3(0, 0, 0);
@@ -208,6 +211,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_IsSpell = 0;
             }
+
+            if (!jump && !crouch && dance)
+            {
+                m_IsDancing = danceType;
+                danceType = danceType % 4 + 1;
+            }
+            else m_IsDancing = 0;
         }
 
 		void ApplyExtraTurnRotation()

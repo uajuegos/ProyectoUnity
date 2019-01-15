@@ -57,9 +57,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
+           
             bool crouch = Input.GetKey(KeyCode.C);
             bool atack = Input.GetKeyDown(KeyCode.V);
             bool spell = Input.GetKeyDown(KeyCode.B);
+            bool dance = Input.GetKeyDown(KeyCode.F);
+           
 
             int spellAux = 0;
             if (spell && !blockSpell)
@@ -97,7 +100,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 
             // pass all parameters to the character control script
-             m_Character.Move(m_Move, crouch, atacar, spellAux, m_Jump);
+             m_Character.Move(m_Move, crouch, atacar, spellAux,dance, m_Jump);
             m_Jump = false;
 
             if(state == State.ATACK)

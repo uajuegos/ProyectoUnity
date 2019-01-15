@@ -31,7 +31,7 @@ public class GM : MonoBehaviour {
     // Use this for initialization
     void Start () {
         SoundManager.sm.getEvtinstance("event:/GameMusic", out gm.eventInstance);
-
+        //gm.eventInstance.set3DAttributes
         gm.eventInstance.start();
         SoundManager.sm.UpdateSM();
     }
@@ -48,10 +48,7 @@ public class GM : MonoBehaviour {
         get { return state; }
         set {
             state = value;
-            /*switch (state)
-            {
-                state;
-            }*/
+            
             eventInstance.setParameterValue("War", (int)(state));
             SoundManager.sm.UpdateSM();
         }
