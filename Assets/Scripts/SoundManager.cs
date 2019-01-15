@@ -15,7 +15,6 @@ public class SoundManager : MonoBehaviour {
     FMOD.Studio.Bank fxBank;
     FMOD.Geometry geometry;
     int numPolygons;
-    bool geometryCreated = false;
     string path;
     private void Awake()
     {
@@ -124,8 +123,7 @@ public class SoundManager : MonoBehaviour {
     {
 
         sm.geometry = new FMOD.Geometry();
-        sm.geometryCreated = true;
-        lowLevelSystem.createGeometry(sm.numPolygons, sm.numPolygons * 8, out sm.geometry);
+        lowLevelSystem.createGeometry(sm.numPolygons*2, sm.numPolygons * 8, out sm.geometry);
 
     }
     public void AddPolygon(float dOclusion, float rOclusion, bool doubleSided, int numVertex, FMOD.VECTOR[] indexV, out int index)
@@ -142,6 +140,18 @@ public class SoundManager : MonoBehaviour {
         sm.geometry.setRotation(ref forward, ref up);
     }
 
+    public void createReverb(out FMOD.Reverb3D reverb, Vector3 pos, float minD, float maxD, FMOD.REVERB_PROPERTIES prop)
+    {
+         reverb = new FMOD.Reverb3D();
+         lowLevelSystem.createReverb3D(out reverb);
+        FMOD.REVERB_PROPERTIES prop2 =prop;
+        reverb.setProperties(ref prop2);
+        FMOD.VECTOR posR;
+        sm.SetFMODVector( out posR, pos);
+       
+        reverb.set3DAttributes(ref posR, minD, maxD);
+        sm.UpdateSM();
+    }
     public int NumPolygons   
     {
         get { return numPolygons; }
