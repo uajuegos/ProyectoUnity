@@ -13,7 +13,7 @@ public class Geometry : MonoBehaviour {
     void Start () {
         bx = GetComponent<BoxCollider>();
 
-        Vector3 pos = bx.transform.localPosition;
+        Vector3 pos = bx.transform.position;
         Vector3 f = bx.transform.forward;
         Vector3 r = bx.transform.right;
         Vector3 u = bx.transform.up;
