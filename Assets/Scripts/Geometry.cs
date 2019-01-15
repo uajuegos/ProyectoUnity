@@ -6,13 +6,14 @@ using UnityEngine;
 public class Geometry : MonoBehaviour {
 
     // Use this for initialization
-    FMOD.Geometry geometry;
+    
     BoxCollider bx;
     public float directOclusion = 1.0f, reverbOclusion= 1.0f;
-	void Start () {
+    
+    void Start () {
         bx = GetComponent<BoxCollider>();
 
-        Vector3 pos = bx.transform.position;
+        Vector3 pos = bx.transform.localPosition;
         Vector3 f = bx.transform.forward;
         Vector3 r = bx.transform.right;
         Vector3 u = bx.transform.up;
@@ -29,8 +30,8 @@ public class Geometry : MonoBehaviour {
 
 
         int polygonIndex;
-        geometry = new FMOD.Geometry();
-        SoundManager.sm.CreateGeometry(out geometry,1, 8);
+        
+        
 
         FMOD.VECTOR ver1 = new FMOD.VECTOR();
         SoundManager.sm.SetFMODVector(out ver1, P000);
@@ -61,11 +62,10 @@ public class Geometry : MonoBehaviour {
         vertex[1] = ver8;
         vertex[0] = ver6;
 
-        geometry.addPolygon(directOclusion, reverbOclusion, true,8, vertex, out polygonIndex);
-        FMOD.VECTOR posPolygon = new FMOD.VECTOR();
-        SoundManager.sm.SetFMODVector(out posPolygon, transform.position);
-        geometry.setPosition(ref posPolygon);
 
+        //SoundManager.sm.CreateGeometry();
+        SoundManager.sm.AddPolygon(directOclusion, reverbOclusion, true, 8, vertex, out polygonIndex);
+        
     }
 	
 	// Update is called once per frame

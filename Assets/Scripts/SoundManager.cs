@@ -13,8 +13,9 @@ public class SoundManager : MonoBehaviour {
     FMOD.Studio.Bank stringBank;
     FMOD.Studio.Bank musicBank;
     FMOD.Studio.Bank fxBank;
-
-
+    FMOD.Geometry geometry;
+    int numPolygons;
+    bool geometryCreated = false;
     string path;
     private void Awake()
     {
@@ -30,6 +31,9 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        
+        sm.numPolygons = GameObject.FindGameObjectsWithTag("Geometry").Length;
+        UnityEngine.Debug.Log(numPolygons);
         FMOD.Studio.System.create(out sm.system);
 
         // The example Studio project is authored for 5.1 sound, so set up the system output mode to match
@@ -45,14 +49,19 @@ public class SoundManager : MonoBehaviour {
         if (sm.system.loadBankFile(path + "/Musicas.bank", LOAD_BANK_FLAGS.NORMAL, out sm.musicBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
         if (sm.system.loadBankFile(path + "/Fx.bank", LOAD_BANK_FLAGS.NORMAL, out sm.fxBank) != RESULT.OK) UnityEngine.Debug.Log("Nosepue");
 
-        
+
+        FMOD.VECTOR posPolygon = new FMOD.VECTOR();
+        SoundManager.sm.SetFMODVector(out posPolygon, Vector3.zero);
+        SetGeometryPosition(ref posPolygon);
+        CreateGeometry();
+
     }
     // Use this for initialization
     void Start () {
-       
-        
 
         
+       
+
     }
 	
     public void loadSound(string name, out FMOD.Sound sound)
@@ -84,6 +93,7 @@ public class SoundManager : MonoBehaviour {
   
     private void OnApplicationQuit()
     {
+        geometry.clearHandle();
         masterBank.unload();
         stringBank.unload();
         musicBank.unload();
@@ -110,8 +120,31 @@ public class SoundManager : MonoBehaviour {
         v.y = vAux.y;
         v.z = vAux.z;
     }
-    public void CreateGeometry(out FMOD.Geometry g, int polygons, int vertex)
+    public void CreateGeometry()
     {
-        lowLevelSystem.createGeometry(polygons, vertex, out g);
+
+        sm.geometry = new FMOD.Geometry();
+        sm.geometryCreated = true;
+        lowLevelSystem.createGeometry(sm.numPolygons, sm.numPolygons * 8, out sm.geometry);
+
+    }
+    public void AddPolygon(float dOclusion, float rOclusion, bool doubleSided, int numVertex, FMOD.VECTOR[] indexV, out int index)
+    {
+        sm.geometry.addPolygon(dOclusion, rOclusion, doubleSided, numVertex, indexV, out index);
+
+    }
+    public void SetGeometryPosition(ref FMOD.VECTOR posPolygon)
+    {
+        sm.geometry.setPosition(ref posPolygon);
+    }
+    public void SetGeometryRotation(ref FMOD.VECTOR forward, ref FMOD.VECTOR up)
+    {
+        sm.geometry.setRotation(ref forward, ref up);
+    }
+
+    public int NumPolygons   
+    {
+        get { return numPolygons; }
+        set { numPolygons = value; }
     }
 }

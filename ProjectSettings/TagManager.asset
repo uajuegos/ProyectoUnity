@@ -7,6 +7,7 @@ TagManager:
   - Arena
   - Terreno
   - Agua
+  - Geometry
   layers:
   - Default
   - TransparentFX

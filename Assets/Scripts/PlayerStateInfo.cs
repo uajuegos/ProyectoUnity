@@ -29,6 +29,7 @@ public class PlayerStateInfo : MonoBehaviour {
     private void Update()
     {
         if (isGrounded) isGrounded = !Input.GetKeyDown(KeyCode.Space);
+        Debug.Log(transform.position);
         SoundManager.sm.SetListener(transform.position, Vector3.zero, new Vector3(0,0,1), transform.up);
         float suma = 0;
        
