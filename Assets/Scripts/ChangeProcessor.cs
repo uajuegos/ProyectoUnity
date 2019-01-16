@@ -31,4 +31,25 @@ public class ChangeProcessor : MonoBehaviour {
         ppb.profile = normal;
         
     }
+    public void Change ()
+    {
+
+        StartCoroutine(ChangeFocusDistance());
+    }
+
+    IEnumerator ChangeFocusDistance()
+    {
+        ppb.profile = new PostProcessingProfile();
+        int i = 10;
+        ppb.profile.depthOfField.enabled = true;
+        var f = ppb.profile.depthOfField.settings;
+       
+        while (i >= 0)
+        {
+            f.focusDistance = i;
+            i--;
+            ppb.profile.depthOfField.settings = f;
+           yield return new WaitForSeconds(0.2f);
+        }
+    }
 }

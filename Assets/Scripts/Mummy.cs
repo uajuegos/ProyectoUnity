@@ -70,6 +70,10 @@ public class Mummy : MonoBehaviour {
 
 
     }
+    public void ChangeTarget(GameObject tg)
+    {
+        target = tg;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer != 12)

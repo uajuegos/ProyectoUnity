@@ -6,9 +6,9 @@ using UnityEngine;
 public class Reverb : MonoBehaviour {
 
 	// Use this for initialization
-        FMOD.Reverb3D myReverb;
+    FMOD.Reverb3D myReverb;
 	void Start () {
-        SoundManager.sm.createReverb(out myReverb, transform.position, 0.0f, 100.0f, FMOD.PRESET.CAVE());
+        SoundManager.sm.createReverb(out myReverb, transform.position, 0, 100.0f, FMOD.PRESET.CAVE());
 
 	}
 	
