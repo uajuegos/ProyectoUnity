@@ -123,12 +123,13 @@ public class SoundManager : MonoBehaviour {
     {
 
         sm.geometry = new FMOD.Geometry();
-        lowLevelSystem.createGeometry(sm.numPolygons*2, sm.numPolygons * 8, out sm.geometry);
+        UnityEngine.Debug.Log( lowLevelSystem.createGeometry(sm.numPolygons*3, sm.numPolygons * 12, out sm.geometry));
 
     }
     public void AddPolygon(float dOclusion, float rOclusion, bool doubleSided, int numVertex, FMOD.VECTOR[] indexV, out int index)
     {
         sm.geometry.addPolygon(dOclusion, rOclusion, doubleSided, numVertex, indexV, out index);
+        
 
     }
     public void SetGeometryPosition(ref FMOD.VECTOR posPolygon)

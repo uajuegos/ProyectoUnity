@@ -74,7 +74,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else
             {
-                if(velH != 0 || VelV != 0 || atack || spell || crouch)
+                if(Mathf.Abs(velH) >= 0.1f || Mathf.Abs(VelV )>= 0.1f || atack || spell) // URGENTE :mirar en git si no funciona
                     hammerAndShield.SetActive(true);
             }
            

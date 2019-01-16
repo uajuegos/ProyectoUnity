@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54266342243346998}
   - component: {fileID: 114301693879282308}
   - component: {fileID: 135057364610733634}
+  - component: {fileID: 114896805800577684}
   m_Layer: 0
   m_Name: Firebola
   m_TagString: Untagged
@@ -72,6 +73,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 1270126634788680, guid: efa467f120f58fe43931dd8e35c2d187,
     type: 2}
+--- !u!114 &114896805800577684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262588621653608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d71b1f9bc4ed540b460340c392ac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: FireTorch.wav
+  volume: 1
+  min: 1
+  max: 1000
+  movable: 1
 --- !u!135 &135057364610733634
 SphereCollider:
   m_ObjectHideFlags: 1
