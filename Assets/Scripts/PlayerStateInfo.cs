@@ -29,7 +29,7 @@ public class PlayerStateInfo : MonoBehaviour {
     private void Update()
     {
         if (isGrounded) isGrounded = !Input.GetKeyDown(KeyCode.Space);
-        SoundManager.sm.SetListener(transform.position, Vector3.zero, new Vector3(0,0,1), transform.up);
+        SoundManager.sm.SetListener(transform.position, Vector3.zero, new Vector3(Mathf.RoundToInt(camera.transform.forward.normalized.x), Mathf.RoundToInt(camera.transform.forward.normalized.y), Mathf.RoundToInt(camera.transform.forward.normalized.z)), transform.up);
         float suma = 0;
        
         if (state != PlayerState.SWIM && state != PlayerState.JUMPING)

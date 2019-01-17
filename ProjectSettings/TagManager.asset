@@ -8,6 +8,7 @@ TagManager:
   - Terreno
   - Agua
   - Geometry
+  - beer
   layers:
   - Default
   - TransparentFX

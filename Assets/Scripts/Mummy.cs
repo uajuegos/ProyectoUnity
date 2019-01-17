@@ -97,11 +97,11 @@ public class Mummy : MonoBehaviour {
         m_Animator.SetBool("Hit", true);
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Hit", false);
-        if (life < 0)
+        if (life <= 0)
         {
             deathInstance.start();
             SoundManager.sm.UpdateSM();
-            Destroy(Instantiate(particleSystem, transform.position, transform.rotation), 1.5f);
+            Destroy(Instantiate(particleSystem, transform.position, transform.rotation), 1.0f);
             Destroy(gameObject);
         }
     }

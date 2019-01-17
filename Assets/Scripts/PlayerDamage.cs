@@ -5,16 +5,28 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerDamage : MonoBehaviour {
-    public Text lifeText;
-    int life = 100;
+    public Slider lifeSlider;
+    private int maxLife = 100;
+    int life;
     private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
     bool block = false;
     Camera c;
     void Start () {
         c = Camera.main;
         life = 100;
-        lifeText.text = "Life: " + life.ToString();
+        lifeSlider.value = (float)life / maxLife;
         m_Character = GetComponent<ThirdPersonCharacter>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("beer"))
+        {
+            life += 30;
+            if (life > maxLife) life = maxLife;
+            lifeSlider.value = (float)life / maxLife;
+
+            Destroy(other.gameObject);
+        }
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -22,8 +34,9 @@ public class PlayerDamage : MonoBehaviour {
         if (collision.transform.gameObject.layer == 11) {
             if (!block)
             {
-                life -= 5;
-                lifeText.text = "Life: " + life.ToString();
+                life -= 20;
+                if (life < 0) life = 0;
+                lifeSlider.value = (float)life / maxLife;
                 block = true;
                StartCoroutine(React());
 
