@@ -13,7 +13,10 @@ public class GM : MonoBehaviour {
     FMOD.Studio.EventInstance ambientInstance;
     bool mute = false;
     public Sprite[] muteSprites;
+    public GameObject[] componentes;
     public GameObject buttonMute;
+    public GameObject camera;
+    bool start = false;
    
     private void Awake()
     {
@@ -34,12 +37,31 @@ public class GM : MonoBehaviour {
     // Use this for initialization
     void Start () {
         SoundManager.sm.getEvtinstance("event:/GameMusic", out gm.musicInstance);
-        gm.musicInstance.start();
+       
+       
         SoundManager.sm.getEvtinstance("event:/Ambiente", out gm.ambientInstance);
         gm.ambientInstance.start();
         SoundManager.sm.UpdateSM();
+        camera.GetComponent<SmoothCamera>().enabled = false;
+        
     }
-	
+    private void Update()
+    {
+        if (!start)
+        {
+            if (!camera.GetComponent<Animation>().IsPlaying("CameraInicio"))
+            {
+                start = true;
+                gm.musicInstance.start();
+                foreach (GameObject go in componentes)
+                {
+                    go.SendMessage("Started");
+                }
+                camera.GetComponent<SmoothCamera>().enabled = true;
+
+            }
+        }
+    }
     public void setUnderwater(bool uw)
     {
         ambientInstance.setParameterValue("Underwater", (float)Convert.ToInt32(uw));
@@ -65,5 +87,10 @@ public class GM : MonoBehaviour {
             buttonMute.GetComponent<Image>().sprite = muteSprites[0];
             musicInstance.setVolume(1);
         }
+    }
+
+    public bool Started
+    {
+        get { return start; }
     }
 }

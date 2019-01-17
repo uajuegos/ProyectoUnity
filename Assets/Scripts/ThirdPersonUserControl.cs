@@ -23,7 +23,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         FMOD.Studio.EventInstance spellEvent;
         float velH, velV;
         public GameObject hammerAndShield;
-
+        public bool start = false;
 
         private void Start()
         {
@@ -50,94 +50,100 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (!m_Jump)
+            if (!m_Jump&& start)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
         }
-
+        public void Started()
+        {
+            start = true;
+        }
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            // read inputs
-            velH = CrossPlatformInputManager.GetAxis("Horizontal");
-            velV = CrossPlatformInputManager.GetAxis("Vertical");
-           
-            bool crouch = Input.GetKey(KeyCode.C);
-            bool atack = Input.GetKeyDown(KeyCode.V);
-            bool spell = Input.GetKeyDown(KeyCode.B);
-            bool dance = Input.GetKeyDown(KeyCode.F);
-            if (dance)
+            if (start)
             {
-                hammerAndShield.SetActive(false);
-            }
-            else
-            {
-                if(Mathf.Abs(velH) >= 0.1f || Mathf.Abs(VelV )>= 0.1f || atack || spell) // URGENTE :mirar en git si no funciona
-                    hammerAndShield.SetActive(true);
-            }
-           
+                // read inputs
+                velH = CrossPlatformInputManager.GetAxis("Horizontal");
+                velV = CrossPlatformInputManager.GetAxis("Vertical");
 
-            int spellAux = 0;
-            if (spell && !blockSpell)
-            {
-                blockSpell = true;
-                StartCoroutine(StartSpell());
-                spellAux = 1;
-            }
-            //Bonus de golpes
-            int atacar = 0;
-            if (atack)
-            {
-                StartCoroutine(StartAttack());
-                 ataque = (ataque  % 3)+1;
-                atacar = ataque;
-            }
-                     
+                bool crouch = Input.GetKey(KeyCode.C);
+                bool atack = Input.GetKeyDown(KeyCode.V);
+                bool spell = Input.GetKeyDown(KeyCode.B);
+                bool dance = Input.GetKeyDown(KeyCode.F);
+                if (dance)
+                {
+                    hammerAndShield.SetActive(false);
+                }
+                else
+                {
+                    if (Mathf.Abs(velH) >= 0.1f || Mathf.Abs(VelV) >= 0.1f || atack || spell) // URGENTE :mirar en git si no funciona
+                        hammerAndShield.SetActive(true);
+                }
 
-            // calculate move direction to pass to character
-            if (m_Cam != null)
-            {
-                // calculate camera relative direction to move:
-                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = velV*m_CamForward + velH*m_Cam.right;
-            }
-            else
-            {
-                // we use world-relative directions in the case of no main camera
-                if(!atack)
-                    m_Move = velV*Vector3.forward + velH*Vector3.right;
-            }
+
+                int spellAux = 0;
+                if (spell && !blockSpell)
+                {
+                    blockSpell = true;
+                    StartCoroutine(StartSpell());
+                    spellAux = 1;
+                }
+                //Bonus de golpes
+                int atacar = 0;
+                if (atack)
+                {
+                    StartCoroutine(StartAttack());
+                    ataque = (ataque % 3) + 1;
+                    atacar = ataque;
+                }
+
+
+                // calculate move direction to pass to character
+                if (m_Cam != null)
+                {
+                    // calculate camera relative direction to move:
+                    m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                    m_Move = velV * m_CamForward + velH * m_Cam.right;
+                }
+                else
+                {
+                    // we use world-relative directions in the case of no main camera
+                    if (!atack)
+                        m_Move = velV * Vector3.forward + velH * Vector3.right;
+                }
 #if !MOBILE_INPUT
-            // walk speed multiplier
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_Move *= 0.5f;
-                velV *= 0.5f;
-                velH *= 0.5f;
-            }
+                // walk speed multiplier
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    m_Move *= 0.5f;
+                    velV *= 0.5f;
+                    velH *= 0.5f;
+                }
 #endif
 
-            // pass all parameters to the character control script
-             m_Character.Move(m_Move, crouch, atacar, spellAux,dance, m_Jump);
-            m_Jump = false;
+                // pass all parameters to the character control script
+                m_Character.Move(m_Move, crouch, atacar, spellAux, dance, m_Jump);
+                m_Jump = false;
 
-            if(state == State.ATACK)
-            {
-                colFoot.enabled = true;
-                colHammer.enabled = true;
-            }
-            else if(state == State.HUNTING)
-            {
-                colFoot.enabled = false;
-                colHammer.enabled = false;
+                if (state == State.ATACK)
+                {
+                    colFoot.enabled = true;
+                    colHammer.enabled = true;
+                }
+                else if (state == State.HUNTING)
+                {
+                    colFoot.enabled = false;
+                    colHammer.enabled = false;
 
-            }
+                }
 
-            if (m_Character.IsGrouding())
-            {
-                state = State.HUNTING;
+                if (m_Character.IsGrouding())
+                {
+                    state = State.HUNTING;
+                }
             }
         }
 

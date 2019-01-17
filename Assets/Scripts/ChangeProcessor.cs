@@ -49,7 +49,7 @@ public class ChangeProcessor : MonoBehaviour {
             f.focusDistance = i;
             i--;
             ppb.profile.depthOfField.settings = f;
-           yield return new WaitForSeconds(0.2f);
+           yield return new WaitForSeconds(0.1f);
         }
     }
 }

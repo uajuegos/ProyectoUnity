@@ -10,6 +10,7 @@ public class Mummy : MonoBehaviour {
     Rigidbody rb;
     public GameObject target;
     public GameObject particleSystem;
+    public bool start;
     public float vel = 1;
     public int life = 5;
     float timeToRefresh = 0.01f;
@@ -19,6 +20,7 @@ public class Mummy : MonoBehaviour {
     FMOD.Studio.EventInstance deathInstance;
     // Use this for initialization
     void Start () {
+        start = false;
         state = State.WANDERING;
         rb =gameObject.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0,0,1);
@@ -33,18 +35,24 @@ public class Mummy : MonoBehaviour {
         SoundManager.sm.UpdateSM();
     }
 
-
+    public void Started()
+    {
+        start = true;
+    }
     // Update is called once per frame
-	void FixedUpdate () {
+    void FixedUpdate () {
         m_Animator.SetBool("Attack", false);
-        float distance = Vector3.Distance(target.transform.position, transform.position);
-        if(distance < 1.5f && !blockAttack)
+        if (start)
         {
-            StartCoroutine(Attack());
+            float distance = Vector3.Distance(target.transform.position, transform.position);
+            if (distance < 1.5f && !blockAttack)
+            {
+                StartCoroutine(Attack());
+            }
+            else if (distance < 7.5f)
+                state = State.ATACK;
+            else state = State.WANDERING;
         }
-        else if ( distance < 7.5f)
-            state = State.ATACK;
-        else state = State.WANDERING;
 
         tempY = rb.velocity.y;
         switch (state)
