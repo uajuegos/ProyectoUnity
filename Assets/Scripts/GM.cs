@@ -16,6 +16,7 @@ public class GM : MonoBehaviour {
     public GameObject[] componentes;
     public GameObject buttonMute;
     public GameObject camera;
+    public GameObject canvas;
     bool start = false;
    
     private void Awake()
@@ -36,6 +37,7 @@ public class GM : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        canvas.SetActive(false);
         SoundManager.sm.getEvtinstance("event:/GameMusic", out gm.musicInstance);
        
        
@@ -57,6 +59,7 @@ public class GM : MonoBehaviour {
                 {
                     go.SendMessage("Started");
                 }
+                canvas.SetActive(true);
                 camera.GetComponent<SmoothCamera>().enabled = true;
 
             }

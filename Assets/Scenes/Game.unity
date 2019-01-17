@@ -30465,7 +30465,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 9184ca82a60670343868585309a8fd38, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &535963821
@@ -49063,7 +49063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.400024, y: -10.899994}
+  m_AnchoredPosition: {x: 16.400024, y: -10.900024}
   m_SizeDelta: {x: 20, y: 160}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &847521450
@@ -95935,6 +95935,11 @@ Prefab:
       propertyPath: componentes.Array.data[1]
       value: 
       objectReference: {fileID: 103659858}
+    - target: {fileID: 114604552132418314, guid: 63d53b5c6ff12154fba5437bb5fb656e,
+        type: 2}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 913413070}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d53b5c6ff12154fba5437bb5fb656e, type: 2}
   m_IsPrefabAsset: 0
@@ -102566,6 +102571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSlider: {fileID: 847521450}
+  particlesPuff: {fileID: 1166311991731936, guid: 90c3f978b7e44194fa509e6cd4a22471,
+    type: 2}
 --- !u!114 &1699721834
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class PlayerDamage : MonoBehaviour {
     private int maxLife = 100;
     int life;
     private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
+    public GameObject particlesPuff;
     bool block = false;
     Camera c;
     void Start () {
@@ -21,6 +22,7 @@ public class PlayerDamage : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("beer"))
         {
+            Instantiate(particlesPuff, other.transform.position, other.transform.rotation);
             life += 30;
             if (life > maxLife) life = maxLife;
             lifeSlider.value = (float)life / maxLife;
