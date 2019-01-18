@@ -11,6 +11,8 @@ public class Mummy : MonoBehaviour {
     public GameObject spawner;
     public GameObject target;
     public GameObject particleSystem;
+    public GameObject particleSystemStart;
+
     public bool start;
     public float vel = 1;
     public int life = 5;
@@ -19,24 +21,30 @@ public class Mummy : MonoBehaviour {
     Animator m_Animator;
     bool blockAttack = false;
     FMOD.Studio.EventInstance deathInstance;
+    FMOD.Studio.EventInstance spawnInstance;
     FMOD.ATTRIBUTES_3D pos;
     SkinnedMeshRenderer[] list;
     // Use this for initialization
     void Start () {
         list = GetComponentsInChildren<SkinnedMeshRenderer>();
         transform.position = spawner.transform.GetChild(Random.Range(0, 3)).transform.position;
+        Destroy(Instantiate(particleSystemStart, transform.position, transform.rotation), 1);
         start = false;
         state = State.WANDERING;
         rb =gameObject.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0,0,1);
         m_Animator = GetComponent<Animator>();
         SoundManager.sm.getEvtinstance("event:/MuerteMomia", out deathInstance);
-         pos = new FMOD.ATTRIBUTES_3D();
+        SoundManager.sm.getEvtinstance("event:/SpawnMomia", out spawnInstance);
+        pos = new FMOD.ATTRIBUTES_3D();
 
         SoundManager.sm.SetFMODVector(out pos.position, transform.position);
         SoundManager.sm.SetFMODVector(out pos.up, transform.up);
         SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
         deathInstance.set3DAttributes(pos);
+        spawnInstance.set3DAttributes(pos);
+        spawnInstance.start();
+
         SoundManager.sm.UpdateSM();
     }
 
@@ -115,8 +123,12 @@ public class Mummy : MonoBehaviour {
             GetComponent<CapsuleCollider>().enabled = false;
             yield return new WaitForSeconds(1.5f);
             transform.position = spawner.transform.GetChild(Random.Range(0, 2)).transform.position;
+            Destroy(Instantiate(particleSystemStart, transform.position,transform.rotation), 1);
             foreach (SkinnedMeshRenderer sknd in list) sknd.enabled = true;
             GetComponent<CapsuleCollider>().enabled = true;
+            spawnInstance.set3DAttributes(pos);
+            spawnInstance.start();
+            SoundManager.sm.UpdateSM();
             life = 5;
         }
     }

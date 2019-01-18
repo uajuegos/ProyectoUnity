@@ -24,17 +24,9 @@ public class GM : MonoBehaviour {
    
     private void Awake()
     {
-        if (gm == null)
-        {
-            //PlayerPrefs.DeleteAll();
+       
             gm = this;
-            DontDestroyOnLoad(gameObject);
-           
-        }
-        else if (gm != this)
-        {
-            Destroy(gameObject);
-        }
+     
 
 
     }

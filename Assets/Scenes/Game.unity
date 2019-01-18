@@ -8317,7 +8317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &170272728
 GameObject:
@@ -22299,7 +22299,6 @@ GameObject:
   - component: {fileID: 393679309}
   - component: {fileID: 393679312}
   - component: {fileID: 393679311}
-  - component: {fileID: 393679310}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -22320,25 +22319,13 @@ Transform:
   m_Father: {fileID: 2019532214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &393679310
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 393679308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &393679311
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393679308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -30012,7 +29999,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 9184ca82a60670343868585309a8fd38, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &535963821
@@ -32684,7 +32671,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4222917566328358, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114978610486366740, guid: ca48f495eb2865b439386e8235df99ee,
         type: 2}
@@ -43631,7 +43618,6 @@ GameObject:
   - component: {fileID: 784055597}
   - component: {fileID: 784055600}
   - component: {fileID: 784055599}
-  - component: {fileID: 784055598}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -43652,25 +43638,13 @@ Transform:
   m_Father: {fileID: 2019532214}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &784055598
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 784055596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &784055599
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 784055596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46907,7 +46881,7 @@ Transform:
   - {fileID: 1804963019}
   - {fileID: 160189266}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &819159506
 MonoBehaviour:
@@ -66235,7 +66209,6 @@ GameObject:
   - component: {fileID: 1142000982}
   - component: {fileID: 1142000985}
   - component: {fileID: 1142000984}
-  - component: {fileID: 1142000983}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -66256,25 +66229,13 @@ Transform:
   m_Father: {fileID: 2019532214}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1142000983
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1142000981}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1142000984
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142000981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -76651,7 +76612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4222917566328358, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1881118752796212, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
       propertyPath: m_Name
@@ -97153,7 +97114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4222917566328358, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1881118752796212, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
       propertyPath: m_Name
@@ -118608,7 +118569,7 @@ Transform:
   - {fileID: 784055597}
   - {fileID: 1142000982}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020017300
 GameObject:
@@ -122280,7 +122241,7 @@ RectTransform:
   m_Children:
   - {fileID: 1139498597}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
