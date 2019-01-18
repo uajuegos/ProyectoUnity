@@ -40,6 +40,7 @@ public class GM : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+       
         canvasIntro.gameObject.SetActive(true);
         canvas.SetActive(false);
         SoundManager.sm.getEvtinstance("event:/GameMusic", out gm.musicInstance);
@@ -64,6 +65,7 @@ public class GM : MonoBehaviour {
                 {
                     go.SendMessage("Started");
                 }
+                
                 canvas.SetActive(true);
                 canvasIntro.gameObject.SetActive(false);
                 camera.GetComponent<SmoothCamera>().enabled = true;

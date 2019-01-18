@@ -31,7 +31,7 @@ public class PlayerDamage : MonoBehaviour
             beerFx.start();
             BeerSpawner.instance.drinkedBeer();
             Instantiate(particlesPuff, other.transform.position, other.transform.rotation);
-            life += 30;
+            life += 15;
             if (life > maxLife) life = maxLife;
             lifeSlider.value = (float)life / maxLife;
 
@@ -45,7 +45,7 @@ public class PlayerDamage : MonoBehaviour
         {
             if (!block)
             {
-                life -= 20;
+                life -= 5;
                 if (life < 0) life = 0;
                 lifeSlider.value = (float)life / maxLife;
                 block = true;

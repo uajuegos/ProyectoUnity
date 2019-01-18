@@ -54,4 +54,11 @@ MonoBehaviour:
   muteSprites:
   - {fileID: 21300000, guid: f1fbe776cab5654438950a543506e7be, type: 3}
   - {fileID: 21300000, guid: 2bc2f4b6d42aa2f45ad2dbe890317c53, type: 3}
+  componentes:
+  - {fileID: 0}
   buttonMute: {fileID: 0}
+  camera: {fileID: 0}
+  canvas: {fileID: 0}
+  canvasIntro: {fileID: 0}
+  mummy: {fileID: 114978610486366740, guid: ca48f495eb2865b439386e8235df99ee, type: 2}
+  mummySpawner: {fileID: 0}
