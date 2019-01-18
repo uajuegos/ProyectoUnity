@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 54831750021276810}
   - component: {fileID: 136338351649102254}
   - component: {fileID: 114978610486366740}
+  - component: {fileID: 114430017009517076}
   m_Layer: 11
   m_Name: Mummy
   m_TagString: Untagged
@@ -1141,6 +1142,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114430017009517076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881118752796212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d71b1f9bc4ed540b460340c392ac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pausable: 0
+  soundName: Player Hurt.wav
+  volume: 1
+  min: 1
+  max: 1000
+  movable: 1
+  tecla: {fileID: 0}
 --- !u!114 &114978610486366740
 MonoBehaviour:
   m_ObjectHideFlags: 1
