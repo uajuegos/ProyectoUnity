@@ -4,24 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class PlayerDamage : MonoBehaviour {
+public class PlayerDamage : MonoBehaviour
+{
     public Slider lifeSlider;
     private int maxLife = 100;
     int life;
     private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
     public GameObject particlesPuff;
+    FMOD.Studio.EventInstance beerFx;
     bool block = false;
     Camera c;
-    void Start () {
+    void Start()
+    {
         c = Camera.main;
         life = 100;
         lifeSlider.value = (float)life / maxLife;
         m_Character = GetComponent<ThirdPersonCharacter>();
+        SoundManager.sm.getEvtinstance("event:/Beer", out beerFx);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("beer"))
         {
+            beerFx.start();
+            BeerSpawner.instance.drinkedBeer();
             Instantiate(particlesPuff, other.transform.position, other.transform.rotation);
             life += 30;
             if (life > maxLife) life = maxLife;
@@ -33,14 +39,15 @@ public class PlayerDamage : MonoBehaviour {
     private void OnCollisionStay(Collision collision)
     {
         m_Character.Hit(false);
-        if (collision.transform.gameObject.layer == 11) {
+        if (collision.transform.gameObject.layer == 11)
+        {
             if (!block)
             {
                 life -= 20;
                 if (life < 0) life = 0;
                 lifeSlider.value = (float)life / maxLife;
                 block = true;
-               StartCoroutine(React());
+                StartCoroutine(React());
 
                 if (life <= 0)
                 {
@@ -51,12 +58,12 @@ public class PlayerDamage : MonoBehaviour {
                     c.GetComponentInChildren<ChangeProcessor>().Change();
                     Invoke("dead", 1.5f);
                 }
-               
+
             }
-           
+
         }
     }
-  void dead()
+    void dead()
     {
         GetComponent<CapsuleCollider>().height = 1.0f;
 

@@ -4,7 +4,8 @@ using UnityEngine;
 using FMOD.Studio;
 using FMOD;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
 
     public static SoundManager sm;
     FMOD.Studio.System system;
@@ -30,7 +31,7 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        
+
         sm.numPolygons = GameObject.FindGameObjectsWithTag("Geometry").Length;
         UnityEngine.Debug.Log(numPolygons);
         FMOD.Studio.System.create(out sm.system);
@@ -56,80 +57,39 @@ public class SoundManager : MonoBehaviour {
 
     }
     // Use this for initialization
-    void Start () {
-
-        
-       
-
-    }
-	
-    public void loadSound(string name, out FMOD.Sound sound)
+    void Start()
     {
-        //Cargar sonido 
-        lowLevelSystem.createSound(Application.dataPath+"/Sounds/"+name,FMOD.MODE._3D|FMOD.MODE.LOOP_NORMAL,out sound);
-    }
-    public void setSource(out FMOD.Channel channel, FMOD.Sound sound)
-    {
-        lowLevelSystem.playSound(sound,new FMOD.ChannelGroup(), false, out channel);
+
+
+
+
     }
     public void UpdateSM()
     {
         sm.system.update();
     }
-
-    public void getEvtinstance(string evt, out EventInstance evtInstance)
+    #region LOWLEVEL
+    public void loadSound(string name, out FMOD.Sound sound)
     {
-        FMOD.Studio.EventDescription description;
-       if( sm.system.getEvent(evt, out description) != RESULT.OK) UnityEngine.Debug.Log("NoVa");
-        description.loadSampleData();
-        if (description.createInstance(out evtInstance) != RESULT.OK) UnityEngine.Debug.Log("NoVa2");
-        
-    }
-    public FMOD.Studio.Bank MusicBank
-    {
-        get { return sm.musicBank; }
-    }
-  
-    private void OnApplicationQuit()
-    {
-        geometry.clearHandle();
-        masterBank.unload();
-        stringBank.unload();
-        musicBank.unload();
-        fxBank.unload();
-        sm.system.release();
-        
+        //Cargar sonido 
+        lowLevelSystem.createSound(Application.dataPath + "/Sounds/" + name, FMOD.MODE._3D | FMOD.MODE.LOOP_NORMAL, out sound);
     }
 
-    public void SetListener(Vector3 pos, Vector3 vel_, Vector3 at_, Vector3 up_)
+    public void setSource(out FMOD.Channel channel, FMOD.Sound sound)
     {
-        //listenerVel = { 0,0,0 }, up = { 0,1,0 }, at = { 0,0,-1 };
-        FMOD.ATTRIBUTES_3D attributes = new FMOD.ATTRIBUTES_3D();
-        SetFMODVector(out attributes.position, pos);
-        SetFMODVector(out attributes.velocity, vel_);
-        SetFMODVector(out attributes.up, up_);
-        SetFMODVector(out attributes.forward, at_);
-
-        sm.system.setListenerAttributes(0, attributes);
-        UpdateSM();
-    }
-    public void SetFMODVector(out FMOD.VECTOR v, Vector3 vAux)
-    {
-        v.x = vAux.x;
-        v.y = vAux.y;
-        v.z = vAux.z;
+        lowLevelSystem.playSound(sound, new FMOD.ChannelGroup(), false, out channel);
     }
     public void CreateGeometry()
     {
 
         sm.geometry = new FMOD.Geometry();
-        UnityEngine.Debug.Log( lowLevelSystem.createGeometry(sm.numPolygons*3, sm.numPolygons * 12, out sm.geometry));
+        UnityEngine.Debug.Log(lowLevelSystem.createGeometry(sm.numPolygons * 3, sm.numPolygons * 12, out sm.geometry));
 
     }
     public void AddPolygon(float dOclusion, float rOclusion, bool doubleSided, int numVertex, FMOD.VECTOR[] indexV, out int index)
     {
         sm.geometry.addPolygon(dOclusion, rOclusion, doubleSided, numVertex, indexV, out index);
-        
+
 
     }
     public void SetGeometryPosition(ref FMOD.VECTOR posPolygon)
@@ -143,19 +103,66 @@ public class SoundManager : MonoBehaviour {
 
     public void createReverb(out FMOD.Reverb3D reverb, Vector3 pos, float minD, float maxD, FMOD.REVERB_PROPERTIES prop)
     {
-         reverb = new FMOD.Reverb3D();
-         lowLevelSystem.createReverb3D(out reverb);
-        FMOD.REVERB_PROPERTIES prop2 =prop;
+        reverb = new FMOD.Reverb3D();
+        lowLevelSystem.createReverb3D(out reverb);
+        FMOD.REVERB_PROPERTIES prop2 = prop;
         reverb.setProperties(ref prop2);
         FMOD.VECTOR posR;
-        sm.SetFMODVector( out posR, pos);
-       
+        sm.SetFMODVector(out posR, pos);
+
         reverb.set3DAttributes(ref posR, minD, maxD);
         sm.UpdateSM();
     }
-    public int NumPolygons   
+    public int NumPolygons
     {
         get { return numPolygons; }
         set { numPolygons = value; }
+    }
+    #endregion
+    #region STUDIO
+    public void getEvtinstance(string evt, out EventInstance evtInstance)
+    {
+        FMOD.Studio.EventDescription description;
+        if (sm.system.getEvent(evt, out description) != RESULT.OK) UnityEngine.Debug.Log("NoVa " + evt);
+        description.loadSampleData();
+        if (description.createInstance(out evtInstance) != RESULT.OK) UnityEngine.Debug.Log("NoVa2");
+
+    }
+    public FMOD.Studio.Bank MusicBank
+    {
+        get { return sm.musicBank; }
+    }
+    public void SetListener(Vector3 pos, Vector3 vel_, Vector3 at_, Vector3 up_)
+    {
+        //listenerVel = { 0,0,0 }, up = { 0,1,0 }, at = { 0,0,-1 };
+        FMOD.ATTRIBUTES_3D attributes = new FMOD.ATTRIBUTES_3D();
+        SetFMODVector(out attributes.position, pos);
+        SetFMODVector(out attributes.velocity, vel_);
+        SetFMODVector(out attributes.up, up_);
+        SetFMODVector(out attributes.forward, at_);
+
+        sm.system.setListenerAttributes(0, attributes);
+        UpdateSM();
+    }
+    #endregion
+
+
+
+    public void SetFMODVector(out FMOD.VECTOR v, Vector3 vAux)
+    {
+        v.x = vAux.x;
+        v.y = vAux.y;
+        v.z = vAux.z;
+    }
+
+    private void OnApplicationQuit()
+    {
+        geometry.clearHandle();
+        masterBank.unload();
+        stringBank.unload();
+        musicBank.unload();
+        fxBank.unload();
+        sm.system.release();
+
     }
 }
