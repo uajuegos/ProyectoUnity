@@ -18,10 +18,14 @@ public class Menu : MonoBehaviour {
         SoundManager.sm.UpdateSM();
 
     }
-    public void Jugar()
+    public void ChangeScene(string scene)
     {
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SoundManager.sm.UpdateSM();
-        SceneManager.LoadScene("Game");
+        SoundManager.sm.Clear();
+        if (scene == "Exit")
+            Application.Quit();
+        else
+            SceneManager.LoadScene(scene);
     }
 }

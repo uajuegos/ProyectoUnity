@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GM : MonoBehaviour {
@@ -96,7 +97,11 @@ public class GM : MonoBehaviour {
             musicInstance.setVolume(1);
         }
     }
-
+    public void ChangeScene(string scene)
+    {
+        SoundManager.sm.Clear();
+        SceneManager.LoadScene(scene);
+    }
     public bool Started
     {
         get { return start; }

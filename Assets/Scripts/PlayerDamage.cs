@@ -14,8 +14,10 @@ public class PlayerDamage : MonoBehaviour
     FMOD.Studio.EventInstance beerFx;
     bool block = false;
     Camera c;
+    public GameObject gameOverPanel;
     void Start()
     {
+        gameOverPanel.SetActive(false);
         c = Camera.main;
         life = 100;
         lifeSlider.value = (float)life / maxLife;
@@ -51,6 +53,8 @@ public class PlayerDamage : MonoBehaviour
 
                 if (life <= 0)
                 {
+                    gameOverPanel.SetActive(true);
+
                     m_Character.Die();
                     collision.gameObject.GetComponent<Mummy>().ChangeTarget(c.gameObject);
                     c.GetComponent<Rigidbody>().isKinematic = false;

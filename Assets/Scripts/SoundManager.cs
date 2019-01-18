@@ -19,19 +19,9 @@ public class SoundManager : MonoBehaviour
     string path;
     private void Awake()
     {
-        if (sm == null)
-        {
-            //PlayerPrefs.DeleteAll();
-            sm = this;
-            DontDestroyOnLoad(gameObject);
-
-        }
-        else if (sm != this)
-        {
-            Destroy(gameObject);
-        }
-
-
+        
+        sm = this;
+          
         sm.numPolygons = GameObject.FindGameObjectsWithTag("Geometry").Length;
         UnityEngine.Debug.Log(numPolygons);
         FMOD.Studio.System.create(out sm.system);
@@ -83,7 +73,7 @@ public class SoundManager : MonoBehaviour
     {
 
         sm.geometry = new FMOD.Geometry();
-        UnityEngine.Debug.Log(lowLevelSystem.createGeometry(sm.numPolygons * 3, sm.numPolygons * 12, out sm.geometry));
+        lowLevelSystem.createGeometry(sm.numPolygons * 3, sm.numPolygons * 12, out sm.geometry);
 
     }
     public void AddPolygon(float dOclusion, float rOclusion, bool doubleSided, int numVertex, FMOD.VECTOR[] indexV, out int index)
@@ -154,7 +144,16 @@ public class SoundManager : MonoBehaviour
         v.y = vAux.y;
         v.z = vAux.z;
     }
+    public void Clear()
+    {
 
+        geometry.clearHandle();
+        masterBank.unload();
+        stringBank.unload();
+        musicBank.unload();
+        fxBank.unload();
+        sm.system.release();
+    }
     private void OnApplicationQuit()
     {
         geometry.clearHandle();
