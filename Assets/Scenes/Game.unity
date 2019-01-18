@@ -49882,6 +49882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935d3f9e1fcd9184f935b8d1efe5ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ReverbType: STONECORRIDOR
+  minDistance: 0
+  maxDistance: 100
   teclaE: {fileID: 310720187}
 --- !u!135 &870285233
 SphereCollider:

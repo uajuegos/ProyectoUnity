@@ -59,7 +59,7 @@ public class SourceLowLevel : MonoBehaviour
             source.set3DMinMaxDistance(1, 1000);
 
             source.setVolume(volume);
-            if (source.set3DAttributes(ref pos, ref vel, ref alt_pan) != FMOD.RESULT.OK) Debug.Log("Nosepue");
+            if (source.set3DAttributes(ref pos, ref vel, ref alt_pan) != FMOD.RESULT.OK) Debug.Log("Nosepue" + soundName);
             SoundManager.sm.UpdateSM();
         }
     }
