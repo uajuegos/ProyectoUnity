@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
-using UnityStandardAssets.CrossPlatformInput;
+
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -66,7 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump&& start)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = Input.GetButtonDown("Jump");
             }
         }
         public void Started()
@@ -80,8 +80,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (start)
             {
                 // read inputs
-                velH = CrossPlatformInputManager.GetAxis("Horizontal");
-                velV = CrossPlatformInputManager.GetAxis("Vertical");
+                velH = Input.GetAxis("Horizontal");
+                velV = Input.GetAxis("Vertical");
 
                 bool crouch = Input.GetKey(KeyCode.C);
                 bool atack = Input.GetKeyDown(KeyCode.V);
