@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="AudioFile" id="{431bb528-9399-4fc6-99c0-0a0b2fa508bd}">
         <property name="assetPath">
-            <value>BODY_Burp_Short_mono.wav</value>
+            <value>Beer/BODY_Burp_Short_mono.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>

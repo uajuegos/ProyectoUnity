@@ -32230,6 +32230,7 @@ GameObject:
   - component: {fileID: 588906299}
   - component: {fileID: 588906298}
   - component: {fileID: 588906297}
+  - component: {fileID: 588906300}
   m_Layer: 5
   m_Name: SonidoMusica
   m_TagString: Untagged
@@ -32305,6 +32306,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 588906300}
+        m_MethodName: onClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &588906298
@@ -32341,6 +32353,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 588906295}
   m_CullTransparentMesh: 0
+--- !u!114 &588906300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 588906295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473d1b73951820f4c8b9c801499d683c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &589652331
 GameObject:
   m_ObjectHideFlags: 0
@@ -110022,6 +110045,7 @@ GameObject:
   - component: {fileID: 1871088219}
   - component: {fileID: 1871088218}
   - component: {fileID: 1871088221}
+  - component: {fileID: 1871088222}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -110086,6 +110110,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1871088222}
+        m_MethodName: onClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 134928993}
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -110148,6 +110183,17 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1871088222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1871088216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473d1b73951820f4c8b9c801499d683c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1871541824
 GameObject:
   m_ObjectHideFlags: 0

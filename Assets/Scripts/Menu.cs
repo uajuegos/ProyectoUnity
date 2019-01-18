@@ -8,6 +8,8 @@ using FMOD;
 
 public class Menu : MonoBehaviour {
     FMOD.Studio.EventInstance eventInstance;
+    AsyncOperation loading;
+
     private void Start()
     {
 
@@ -20,12 +22,21 @@ public class Menu : MonoBehaviour {
     }
     public void ChangeScene(string scene)
     {
+        if (scene == "Game")
+        {
+            loading = SceneManager.LoadSceneAsync(scene);
+            loading.allowSceneActivation = false;
+        }
+
+        StartCoroutine(clearSM(scene));
+    }
+    IEnumerator clearSM(string scene) {
+        yield return new WaitForSeconds(0.5f);
+        loading.allowSceneActivation = true;
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SoundManager.sm.UpdateSM();
         SoundManager.sm.Clear();
         if (scene == "Exit")
             Application.Quit();
-        else
-            SceneManager.LoadScene(scene);
     }
 }

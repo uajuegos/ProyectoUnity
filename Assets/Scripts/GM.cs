@@ -20,6 +20,7 @@ public class GM : MonoBehaviour {
     public GameObject canvas;
     public GameObject canvasIntro;
 
+    AsyncOperation loading;
     bool start = false;
    
     private void Awake()
@@ -93,11 +94,22 @@ public class GM : MonoBehaviour {
     }
     public void ChangeScene(string scene)
     {
-        SoundManager.sm.Clear();
-        SceneManager.LoadScene(scene);
+            loading = SceneManager.LoadSceneAsync(scene);
+            loading.allowSceneActivation = false;
+
+        StartCoroutine(clearSM(scene));
     }
     public bool Started
     {
         get { return start; }
+    }
+
+    IEnumerator clearSM(string scene)
+    {
+        yield return new WaitForSeconds(0.5f);
+        loading.allowSceneActivation = true;
+        SoundManager.sm.UpdateSM();
+        SoundManager.sm.Clear();
+
     }
 }
