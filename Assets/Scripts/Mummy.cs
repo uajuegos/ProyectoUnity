@@ -23,6 +23,8 @@ public class Mummy : MonoBehaviour {
     FMOD.Studio.EventInstance deathInstance;
     FMOD.Studio.EventInstance spawnInstance;
     FMOD.Studio.EventInstance hammerHitInstance;
+    FMOD.Studio.EventInstance attackInstance;
+
     FMOD.ATTRIBUTES_3D pos;
     SkinnedMeshRenderer[] list;
     // Use this for initialization
@@ -38,6 +40,7 @@ public class Mummy : MonoBehaviour {
         SoundManager.sm.getEvtinstance("event:/MuerteMomia", out deathInstance);
         SoundManager.sm.getEvtinstance("event:/SpawnMomia", out spawnInstance);
         SoundManager.sm.getEvtinstance("event:/HammerHit", out hammerHitInstance);
+        SoundManager.sm.getEvtinstance("event:/MummyAttack", out attackInstance);
 
         pos = new FMOD.ATTRIBUTES_3D();
 
@@ -47,6 +50,7 @@ public class Mummy : MonoBehaviour {
         deathInstance.set3DAttributes(pos);
         spawnInstance.set3DAttributes(pos);
         hammerHitInstance.set3DAttributes(pos);
+        attackInstance.set3DAttributes(pos);
         spawnInstance.start();
 
         SoundManager.sm.UpdateSM();
@@ -145,6 +149,7 @@ public class Mummy : MonoBehaviour {
     {
         blockAttack = true;
         m_Animator.SetBool("Attack", true);
+        attackInstance.start();
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Attack", false);
         blockAttack = false;
