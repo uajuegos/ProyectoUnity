@@ -21,13 +21,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public Collider colFoot;
         MagicBall mgBall;
         FMOD.Studio.EventInstance spellEvent;
+        FMOD.Studio.EventInstance atackEvent;
         float velH, velV;
         public GameObject hammerAndShield;
+        FMOD.ATTRIBUTES_3D pos;
+
         public bool start = false;
 
         private void Start()
         {
             SoundManager.sm.getEvtinstance("event:/Spell", out spellEvent);
+            SoundManager.sm.getEvtinstance("event:/Hammer", out atackEvent);
+
+            pos = new FMOD.ATTRIBUTES_3D();
+
+            SoundManager.sm.SetFMODVector(out pos.position, transform.position);
+            SoundManager.sm.SetFMODVector(out pos.up, transform.up);
+            SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
+            spellEvent.set3DAttributes(pos);
+   
+            SoundManager.sm.UpdateSM();
+
             SoundManager.sm.UpdateSM();
             state = State.HUNTING;
             // get the transform of the main camera
@@ -95,6 +109,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 int atacar = 0;
                 if (atack)
                 {
+                    
                     StartCoroutine(StartAttack());
                     ataque = (ataque % 3) + 1;
                     atacar = ataque;
@@ -150,10 +165,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         IEnumerator StartAttack()
         {
             yield return new WaitForSeconds(.5f);
+            atackEvent.start();
             state = State.ATACK;
         }
         IEnumerator StartSpell()
         {
+            SoundManager.sm.SetFMODVector(out pos.position, transform.position);
+            SoundManager.sm.SetFMODVector(out pos.up, transform.up);
+            SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
+            spellEvent.set3DAttributes(pos);
+            SoundManager.sm.UpdateSM();
             spellEvent.start();
             yield return new WaitForSeconds(1.25f);
             mgBall.SpawnBall(transform.forward);
@@ -172,6 +193,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public bool IsGrounded
         {
             get { return m_Character.M_IsGrounded; }
+        }
+        public bool StartFlag
+        {
+            set { start = value; }
         }
     }
     

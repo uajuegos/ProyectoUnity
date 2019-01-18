@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{73b7b762-a27a-4353-a6ec-d666e4bf9bc8}">
+        <property name="assetPath">
+            <value>Pista de audio.ogg</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.25426303854875282</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{8a829aac-9855-4b2c-8335-9ca11ec762f5}</destination>
+        </relationship>
+    </object>
+</objects>

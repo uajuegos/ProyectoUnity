@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{7cf216dc-60f1-40e4-b599-e4b4a65958bc}">
+        <property name="assetPath">
+            <value>Hammer/WHOOSH_Air_Slow_RR2_mono.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.30063492063492064</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{8a829aac-9855-4b2c-8335-9ca11ec762f5}</destination>
+        </relationship>
+    </object>
+</objects>

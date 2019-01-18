@@ -22,6 +22,7 @@ public class Mummy : MonoBehaviour {
     bool blockAttack = false;
     FMOD.Studio.EventInstance deathInstance;
     FMOD.Studio.EventInstance spawnInstance;
+    FMOD.Studio.EventInstance hammerHitInstance;
     FMOD.ATTRIBUTES_3D pos;
     SkinnedMeshRenderer[] list;
     // Use this for initialization
@@ -36,6 +37,8 @@ public class Mummy : MonoBehaviour {
         m_Animator = GetComponent<Animator>();
         SoundManager.sm.getEvtinstance("event:/MuerteMomia", out deathInstance);
         SoundManager.sm.getEvtinstance("event:/SpawnMomia", out spawnInstance);
+        SoundManager.sm.getEvtinstance("event:/HammerHit", out hammerHitInstance);
+
         pos = new FMOD.ATTRIBUTES_3D();
 
         SoundManager.sm.SetFMODVector(out pos.position, transform.position);
@@ -43,6 +46,7 @@ public class Mummy : MonoBehaviour {
         SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
         deathInstance.set3DAttributes(pos);
         spawnInstance.set3DAttributes(pos);
+        hammerHitInstance.set3DAttributes(pos);
         spawnInstance.start();
 
         SoundManager.sm.UpdateSM();
@@ -110,6 +114,10 @@ public class Mummy : MonoBehaviour {
     IEnumerator Hit()
     {
         life -= 5;
+        actualizaPos();
+        hammerHitInstance.set3DAttributes(pos);
+        SoundManager.sm.UpdateSM();
+        hammerHitInstance.start();
         m_Animator.SetBool("Hit", true);
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Hit", false);
@@ -126,9 +134,10 @@ public class Mummy : MonoBehaviour {
             Destroy(Instantiate(particleSystemStart, transform.position,transform.rotation), 1);
             foreach (SkinnedMeshRenderer sknd in list) sknd.enabled = true;
             GetComponent<CapsuleCollider>().enabled = true;
+            actualizaPos();
             spawnInstance.set3DAttributes(pos);
-            spawnInstance.start();
             SoundManager.sm.UpdateSM();
+            spawnInstance.start();
             life = 5;
         }
     }
@@ -139,5 +148,11 @@ public class Mummy : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         m_Animator.SetBool("Attack", false);
         blockAttack = false;
+    }
+    void actualizaPos()
+    {
+        SoundManager.sm.SetFMODVector(out pos.position, transform.position);
+        SoundManager.sm.SetFMODVector(out pos.up, transform.up);
+        SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
     }
 }

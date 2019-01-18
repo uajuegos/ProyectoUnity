@@ -12,6 +12,7 @@ public class PlayerDamage : MonoBehaviour
     private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
     public GameObject particlesPuff;
     FMOD.Studio.EventInstance beerFx;
+    FMOD.Studio.EventInstance hit;
     bool block = false;
     Camera c;
     public GameObject gameOverPanel;
@@ -23,6 +24,7 @@ public class PlayerDamage : MonoBehaviour
         lifeSlider.value = (float)life / maxLife;
         m_Character = GetComponent<ThirdPersonCharacter>();
         SoundManager.sm.getEvtinstance("event:/Beer", out beerFx);
+        SoundManager.sm.getEvtinstance("event:/HitPlayer", out hit);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -54,7 +56,7 @@ public class PlayerDamage : MonoBehaviour
                 if (life <= 0)
                 {
                     gameOverPanel.SetActive(true);
-
+                    GetComponent<ThirdPersonUserControl>().StartFlag = false;
                     m_Character.Die();
                     collision.gameObject.GetComponent<Mummy>().ChangeTarget(c.gameObject);
                     c.GetComponent<Rigidbody>().isKinematic = false;
@@ -75,6 +77,7 @@ public class PlayerDamage : MonoBehaviour
 
     IEnumerator React()
     {
+        hit.start();
         m_Character.Hit(true);
         yield return new WaitForSeconds(1);
         m_Character.Hit(false);
