@@ -80,11 +80,6 @@ public class Geometry : MonoBehaviour {
         
     }
 	
-	// Update is called once per frame
-	void Update () {
-     
-	}
-
     //private void OnDrawGizmosSelected()
     //{
     //    Color[] colores = new Color[4];

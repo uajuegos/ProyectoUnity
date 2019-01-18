@@ -1,0 +1,41 @@
+<scene exported_by="Colin" export_time="1524703214.994383" previous_export_time="0" formatVersion="1.0.1" >
+  <nodes >
+    <node name="Sun" >
+      <position x="8.507660" y="22.568825" z="48.735439" />
+      <rotation qx="0.000000" qz="-0.000000" qy="0.000000" qw="1.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light powerScale="1.0" type="directional" name="Sun" >
+        <position x="8.507660" y="22.568825" z="48.735439" />
+        <lightAttenuation range="5000" quadratic="0.0" linear="0.04" constant="1.0" />
+        <direction x="0.0" y="-1.0" z="0.0" />
+        <colourDiffuse g="1.0" b="1.0" r="1.0" />
+        <colourSpecular g="1.0" b="1.0" r="1.0" />
+      </light>
+    </node>
+    <node name="box-gold002" >
+      <position x="3.661978" y="0.000000" z="20.000008" />
+      <rotation qx="-0.560986" qz="-0.430459" qy="-0.430459" qw="0.560986" />
+      <scale x="108.291725" y="108.291725" z="108.291733" />
+      <user_data value="7231" type="int" name="MaxHandle" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity velocity_max="0.0" name="Untitled.1414" mass="1.0" lock_trans_x="False" velocity_min="0.0" physics_type="STATIC" actor="False" lock_rot_y="False" damping_rot="0.10000000149011612" mass_radius="1.0" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" friction_x="1.0" lock_trans_z="False" anisotropic_friction="False" meshFile="Untitled.1414.mesh" lock_rot_x="False" lock_rot_z="False" friction_z="1.0" ghost="False" friction_y="1.0" lock_trans_y="False" />
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="E:\Descargas\arena\arena.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourBackground g="0.05087608844041824" b="0.05087608844041824" r="0.05087608844041824" />
+    <colourAmbient g="0.0" b="0.0" r="0.0" />
+    <colourDiffuse g="0.05087608844041824" b="0.05087608844041824" r="0.05087608844041824" />
+  </environment>
+</scene>
