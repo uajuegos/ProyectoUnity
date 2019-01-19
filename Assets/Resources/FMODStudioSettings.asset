@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  SourceProjectPathUnformatted: 
-  SourceBankPathUnformatted: 
+  sourceProjectPath: Assets\FMODStudio\Sonidito\Sonidito.fspro
+  SourceProjectPathUnformatted: Assets\FMODStudio\Sonidito\Sonidito.fspro
+  SourceBankPathUnformatted: Assets\FMODStudio\Sonidito\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   BankDirectorySettings:
   - Platform: 0
     Value: 
+  - Platform: 2
+    Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
@@ -58,5 +60,8 @@ MonoBehaviour:
   - Platform: 2
     Value: 32
   Plugins: []
-  MasterBanks: []
-  Banks: []
+  MasterBanks:
+  - Master Bank
+  Banks:
+  - Fx
+  - Musicas

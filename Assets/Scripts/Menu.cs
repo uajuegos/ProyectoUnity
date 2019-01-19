@@ -31,12 +31,15 @@ public class Menu : MonoBehaviour {
         StartCoroutine(clearSM(scene));
     }
     IEnumerator clearSM(string scene) {
+        string s = scene;
         yield return new WaitForSeconds(0.5f);
-        loading.allowSceneActivation = true;
+     
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SoundManager.sm.UpdateSM();
         SoundManager.sm.Clear();
-        if (scene == "Exit")
+        if (s == "Exit")
             Application.Quit();
+        else
+            loading.allowSceneActivation = true;
     }
 }
