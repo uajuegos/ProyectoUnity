@@ -79,17 +79,15 @@ public class SourceLowLevel : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (Pausable && other.gameObject.CompareTag("Player"))
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
+       if (Input.GetKeyUp(KeyCode.E)&& Pausable && other.gameObject.CompareTag("Player"))
+       {
                 bool pausado;
                 source.getPaused(out pausado);
                 source.setPaused(!pausado);
                 SoundManager.sm.UpdateSM();
 
-            }
+       }
 
-        }
+        
     }
 }

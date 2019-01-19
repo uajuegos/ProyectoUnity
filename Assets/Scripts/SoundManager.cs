@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
     public void loadSound(string name, out FMOD.Sound sound)
     {
         //Cargar sonido 
-        lowLevelSystem.createSound(Application.dataPath + "/Sounds/" + name, FMOD.MODE._3D | FMOD.MODE.LOOP_NORMAL, out sound);
+        lowLevelSystem.createSound(Application.dataPath + "/StreamingAssets/Sounds/" + name, FMOD.MODE._3D | FMOD.MODE.LOOP_NORMAL, out sound);
     }
 
     public void setSource(out FMOD.Channel channel, FMOD.Sound sound)
