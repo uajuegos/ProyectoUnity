@@ -39,6 +39,11 @@ public class PlayerDamage : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+
+        else if (other.gameObject.CompareTag("DeathZone"))
+        {
+            Death();
+        }
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -55,20 +60,26 @@ public class PlayerDamage : MonoBehaviour
 
                 if (life <= 0)
                 {
-                    gameOverPanel.SetActive(true);
-                    GetComponent<ThirdPersonUserControl>().StartFlag = false;
-                    m_Character.Die();
                     collision.gameObject.GetComponent<Mummy>().ChangeTarget(c.gameObject);
-                    c.GetComponent<Rigidbody>().isKinematic = false;
-                    c.GetComponent<SmoothCamera>().enabled = false;
-                    c.GetComponentInChildren<ChangeProcessor>().Change();
-                    Invoke("dead", 1.5f);
+                    Death();
                 }
 
             }
 
         }
     }
+
+    private void Death()
+    {
+        gameOverPanel.SetActive(true);
+        GetComponent<ThirdPersonUserControl>().StartFlag = false;
+        m_Character.Die();
+        c.GetComponent<Rigidbody>().isKinematic = false;
+        c.GetComponent<SmoothCamera>().enabled = false;
+        c.GetComponentInChildren<ChangeProcessor>().Change();
+        Invoke("dead", 1.5f);
+    }
+
     void dead()
     {
         GetComponent<CapsuleCollider>().height = 1.0f;

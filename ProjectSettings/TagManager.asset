@@ -9,6 +9,7 @@ TagManager:
   - Agua
   - Geometry
   - beer
+  - DeathZone
   layers:
   - Default
   - TransparentFX
