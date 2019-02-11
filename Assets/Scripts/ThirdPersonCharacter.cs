@@ -31,7 +31,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
-
+        Vector3 lastNormal;
 
 		void Start()
 		{
@@ -79,7 +79,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			else
 			{
 				HandleAirborneMovement();
-			}
+            }
 
 			ScaleCapsuleForCrouching(crouch);
 			PreventStandingInLowHeadroom();
@@ -139,10 +139,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Animator.SetInteger("Hechizo", m_IsSpell);
             m_Animator.SetInteger("Dancing", m_IsDancing);
 
-            if (!m_IsGrounded)
-			{
-				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
-			}
 
 			// calculate which leg is behind, so as to leave that leg trailing in the jump animation
 			// (This code is reliant on the specific run cycle offset in our animations,
@@ -151,7 +147,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				Mathf.Repeat(
 					m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime + m_RunCycleLegOffset, 1);
 			float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
-			if (m_IsGrounded)
+            if (!m_IsGrounded)
+			{
+				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
+			}
+			else
 			{
 				m_Animator.SetFloat("JumpLeg", jumpLeg);
 			}
@@ -254,6 +254,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
+                lastNormal = hitInfo.normal;
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
@@ -261,8 +262,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			else
 			{
 				m_IsGrounded = false;
-				m_GroundNormal = Vector3.up;
-				m_Animator.applyRootMotion = false;
+				m_GroundNormal = lastNormal;
+				m_Animator.applyRootMotion = true;
 			}
 		}
 

@@ -30,8 +30,11 @@ public class Mummy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         list = GetComponentsInChildren<SkinnedMeshRenderer>();
-        transform.position = spawner.transform.GetChild(Random.Range(0, 3)).transform.position;
-        Destroy(Instantiate(particleSystemStart, transform.position, transform.rotation), 1);
+        if (spawner != null)
+        {
+            /*transform.position = spawner.transform.GetChild(Random.Range(0, 3)).transform.position;
+            Destroy(Instantiate(particleSystemStart, transform.position, transform.rotation), 1);*/
+        }
         start = false;
         state = State.WANDERING;
         rb =gameObject.GetComponent<Rigidbody>();
@@ -134,15 +137,20 @@ public class Mummy : MonoBehaviour {
             foreach (SkinnedMeshRenderer sknd in list ) sknd.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             yield return new WaitForSeconds(1.5f);
-            transform.position = spawner.transform.GetChild(Random.Range(0, 2)).transform.position;
-            Destroy(Instantiate(particleSystemStart, transform.position,transform.rotation), 1);
-            foreach (SkinnedMeshRenderer sknd in list) sknd.enabled = true;
-            GetComponent<CapsuleCollider>().enabled = true;
-            actualizaPos();
-            spawnInstance.set3DAttributes(pos);
-            SoundManager.sm.UpdateSM();
-            spawnInstance.start();
-            life = 5;
+            if (spawner != null)
+            {
+                transform.position = spawner.transform.GetChild(Random.Range(0, 2)).transform.position;
+                Destroy(Instantiate(particleSystemStart, transform.position, transform.rotation), 1);
+                foreach (SkinnedMeshRenderer sknd in list) sknd.enabled = true;
+                GetComponent<CapsuleCollider>().enabled = true;
+                actualizaPos();
+                spawnInstance.set3DAttributes(pos);
+                SoundManager.sm.UpdateSM();
+                spawnInstance.start();
+                life = 5;
+            }
+            else Destroy(gameObject);
+
         }
     }
     IEnumerator Attack()
