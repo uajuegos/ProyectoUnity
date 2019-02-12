@@ -48,7 +48,8 @@ public class GM : MonoBehaviour {
 
         foreach (GameObject go in componentes)
         {
-            go.SendMessage("Started");
+            if(go.activeSelf)
+                go.SendMessage("Started");
         }
 
     }
@@ -63,7 +64,8 @@ public class GM : MonoBehaviour {
 
         foreach (GameObject go in componentes)
         {
-            go.SendMessage("Stop");
+            if (go.activeSelf)
+                go.SendMessage("Stop");
         }
     }
     private void Update()
@@ -76,7 +78,8 @@ public class GM : MonoBehaviour {
                
                 foreach (GameObject go in componentes)
                 {
-                    go.SendMessage("Started");
+                    if (go.activeSelf)
+                        go.SendMessage("Started");
                 }
                 
                 canvas.SetActive(true);
