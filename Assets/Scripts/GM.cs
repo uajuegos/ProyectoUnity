@@ -34,17 +34,37 @@ public class GM : MonoBehaviour {
     // Use this for initialization
     void Start () {
        
-        canvasIntro.gameObject.SetActive(true);
-        canvas.SetActive(false);
+        //canvasIntro.gameObject.SetActive(true);
+        canvas.SetActive(true);
         SoundManager.sm.getEvtinstance("event:/GameMusic", out gm.musicInstance);
        
        
         SoundManager.sm.getEvtinstance("event:/Ambiente", out gm.ambientInstance);
         gm.ambientInstance.start();
         SoundManager.sm.UpdateSM();
+        camera.GetComponent<SmoothCamera>().enabled = true;
+        //gm.musicInstance.start();
+        start = true;
+
+        foreach (GameObject go in componentes)
+        {
+            go.SendMessage("Started");
+        }
+
+    }
+    public void Cinematica()
+    {
+        start = false;
         camera.GetComponent<SmoothCamera>().enabled = false;
+        camera.GetComponent<Animation>().Play("CameraInicio");
+        canvasIntro.gameObject.SetActive(true);
+        canvas.SetActive(false);
         gm.musicInstance.start();
 
+        foreach (GameObject go in componentes)
+        {
+            go.SendMessage("Stop");
+        }
     }
     private void Update()
     {

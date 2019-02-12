@@ -63,6 +63,10 @@ public class Mummy : MonoBehaviour {
     {
         start = true;
     }
+    public void Stop()
+    {
+        start = false;
+    }
     // Update is called once per frame
     void FixedUpdate () {
         m_Animator.SetBool("Attack", false);

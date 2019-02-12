@@ -73,6 +73,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             start = true;
         }
+        public void Stop()
+        {
+            
+
+        }
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()

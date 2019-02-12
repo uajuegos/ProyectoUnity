@@ -37,7 +37,7 @@ public class MagicCactus : MonoBehaviour {
                 active = false;
                 talking = false;
                 frase = 0;
-                textPanel.SetActive(false);
+                //textPanel.SetActive(false);
             }
             
         }
@@ -81,6 +81,7 @@ public class MagicCactus : MonoBehaviour {
             }
 
         }
+       
     }
     private void OnTriggerExit(Collider other)
     {
