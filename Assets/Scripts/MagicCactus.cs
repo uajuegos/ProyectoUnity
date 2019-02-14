@@ -75,7 +75,7 @@ public class MagicCactus : MonoBehaviour {
             if (!talking)
             {
                 textPanel.SetActive(true);
-                text.text = frases[frase];
+                if(frases.Length >0)text.text = frases[frase];
                 frase++;
                 talking = true;
             }
