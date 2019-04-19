@@ -36,13 +36,17 @@ public class PlayerDamage : MonoBehaviour
             life += 15;
             if (life > maxLife) life = maxLife;
             lifeSlider.value = (float)life / maxLife;
+            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Damage(Tracker.ActorSubjectType.Item, Tracker.ActorSubjectType.Player, "HP: +15"));
+
 
             Destroy(other.gameObject);
         }
 
         else if (other.gameObject.CompareTag("DeathZone"))
         {
+            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Dead(Tracker.ActorSubjectType.DeathZone, Tracker.ActorSubjectType.Player, "Position" + transform.position.ToString()));
             Death();
+            
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -56,11 +60,13 @@ public class PlayerDamage : MonoBehaviour
                 if (life < 0) life = 0;
                 lifeSlider.value = (float)life / maxLife;
                 block = true;
+                TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Damage(Tracker.ActorSubjectType.Enemy, Tracker.ActorSubjectType.Player, "HP: -5"));
                 StartCoroutine(React());
 
                 if (life <= 0)
                 {
                     collision.gameObject.GetComponent<Mummy>().ChangeTarget(c.gameObject);
+                    TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Dead(Tracker.ActorSubjectType.Enemy, Tracker.ActorSubjectType.Player, "Position" + transform.position.ToString()));
                     Death();
                 }
 

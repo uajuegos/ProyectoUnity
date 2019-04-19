@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114665154843344518}
-  - {fileID: 114640303419751372}
-  - {fileID: 114300952678296766}
-  - {fileID: 114540823788093510}
+  - {fileID: 114877880934796406}
+  - {fileID: 114960681743828900}
+  - {fileID: 114000440739545518}
   EditorEvents:
   - {fileID: 114991520953720312}
   - {fileID: 114600770336836052}
@@ -37,10 +37,30 @@ MonoBehaviour:
   - {fileID: 114561849915235958}
   MasterBanks:
   - {fileID: 114540823788093510}
+  - {fileID: 114000440739545518}
   StringsBanks:
   - {fileID: 114665154843344518}
-  stringsBankWriteTime: 636861866796521748
+  stringsBankWriteTime: 636912922205851049
   cacheVersion: 3
+--- !u!114 &114000440739545518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Alvaro\Desktop\UNIVERSIDAD\4o ano\UAJ\ProyectoUnity\Assets\FMODStudio\Sonidito\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636912922205851049
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12474
+  Exists: 1
 --- !u!114 &114005384103157522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,13 +75,13 @@ MonoBehaviour:
   Path: event:/GameMusic
   guid: 8eebba79a2086f47bfd63cb86dcdc42f
   Banks:
-  - {fileID: 114300952678296766}
+  - {fileID: 114960681743828900}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114014583875482580}
-  - {fileID: 114116622912818016}
+  - {fileID: 114939311845781020}
+  - {fileID: 114201526258084622}
   MinDistance: 0
   MaxDistance: 0
   Length: 201652
@@ -88,6 +108,21 @@ MonoBehaviour:
   MaxDistance: 20
   Length: 1773
 --- !u!114 &114014583875482580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Underwater
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114017055546842214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,12 +173,12 @@ MonoBehaviour:
   Path: event:/Ambiente
   guid: 3971a3700ec21244bd1b8e7ada8d43e1
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114873115337873504}
+  - {fileID: 114017055546842214}
   MinDistance: 0
   MaxDistance: 0
   Length: 246975
@@ -409,7 +444,7 @@ MonoBehaviour:
   Path: event:/HipHop
   guid: 28d712826c32d34aa61dadfa7562cc07
   Banks:
-  - {fileID: 114300952678296766}
+  - {fileID: 114960681743828900}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -505,7 +540,7 @@ MonoBehaviour:
   Path: event:/ExplodeSpell
   guid: ebfe89accf5ad047bf565cd0ff1e2c7f
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -572,13 +607,13 @@ MonoBehaviour:
   Path: event:/Steps2
   guid: 6fdccbf09524974e8be861430d7b6e9c
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114613307993103474}
-  - {fileID: 114984159348129794}
+  - {fileID: 114391721660931698}
+  - {fileID: 114980862528321278}
   MinDistance: 0
   MaxDistance: 0
   Length: 920
@@ -616,6 +651,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Velocidad
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114201526258084622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: War
   Min: 0
   Max: 1
   Default: 0
@@ -685,6 +735,21 @@ MonoBehaviour:
   Name: Tipo
   Min: 0
   Max: 2
+  Default: 0
+--- !u!114 &114223153097342232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Velocidad
+  Min: 0
+  Max: 1
   Default: 0
 --- !u!114 &114227807634468976
 MonoBehaviour:
@@ -908,7 +973,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 19434176
-  Exists: 1
+  Exists: 0
 --- !u!114 &114318926739763906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,12 +1028,12 @@ MonoBehaviour:
   Path: event:/Jump
   guid: 5f342315f7edf64082445c044918e138
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114658088271975794}
+  - {fileID: 114559409552412472}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -986,7 +1051,7 @@ MonoBehaviour:
   Path: event:/Hammer
   guid: 5de814f0d97d2e4ca48f0844114b225f
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -994,6 +1059,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 516
+--- !u!114 &114391721660931698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: War
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114393250441505062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,7 +1284,7 @@ MonoBehaviour:
   Path: event:/HammerHit
   guid: c5f46e6ee25bdd4dbe3ae1f5bde140f4
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1253,7 +1333,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 12474
-  Exists: 1
+  Exists: 0
 --- !u!114 &114551757065367030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,15 +1348,30 @@ MonoBehaviour:
   Path: event:/Steps
   guid: 4bc697fbaa01db45a52185d8c690ca71
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114072282401020964}
+  - {fileID: 114223153097342232}
   MinDistance: 0
   MaxDistance: 0
   Length: 3800
+--- !u!114 &114559409552412472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Tipo
+  Min: 0
+  Max: 2
+  Default: 0
 --- !u!114 &114559801877753134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,7 +1408,7 @@ MonoBehaviour:
   Path: event:/MenuMusic
   guid: d9e221817dfdde498886f118d2e61beb
   Banks:
-  - {fileID: 114300952678296766}
+  - {fileID: 114960681743828900}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -1418,7 +1513,7 @@ MonoBehaviour:
   Path: event:/Spell
   guid: 0b81f52085052f489be652834da6167e
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1499,7 +1594,7 @@ MonoBehaviour:
   Path: event:/SpawnMomia
   guid: d6996cff8bc28645815f1f95e7fd37bb
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1558,7 +1653,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 4834336
-  Exists: 1
+  Exists: 0
 --- !u!114 &114644634534225414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,7 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMODStudio\Sonidito\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636861866796521748
+  lastModified: 636912922205851049
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1888,7 +1983,7 @@ MonoBehaviour:
   Path: event:/MuerteMomia
   guid: 35a3cad72608f445a14cf5736afcab19
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1910,7 +2005,7 @@ MonoBehaviour:
   Path: event:/OnButton
   guid: d55afea2bc8bb24da22c4e5286c28b2f
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2186,7 +2281,7 @@ MonoBehaviour:
   Path: event:/MummyAttack
   guid: c02f46f8f49719468e475844bb108de6
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2209,6 +2304,24 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114877880934796406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Alvaro\Desktop\UNIVERSIDAD\4o ano\UAJ\ProyectoUnity\Assets\FMODStudio\Sonidito\Build\Desktop\Fx.bank
+  lastModified: 636912922258722310
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 4834336
+  Exists: 1
 --- !u!114 &114912152740284450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,7 +2359,7 @@ MonoBehaviour:
   Path: event:/HitPlayer
   guid: 2443a9c752341b4cbc83021fff07e819
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2312,6 +2425,21 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1086
+--- !u!114 &114939311845781020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Underwater
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114941746171057056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,7 +2500,7 @@ MonoBehaviour:
   Path: event:/ClickButton
   guid: f262a997a1f56647b85ba9cd333c510a
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2380,6 +2508,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1633
+--- !u!114 &114960681743828900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Alvaro\Desktop\UNIVERSIDAD\4o ano\UAJ\ProyectoUnity\Assets\FMODStudio\Sonidito\Build\Desktop\Musicas.bank
+  lastModified: 636912922498136027
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 19434176
+  Exists: 1
 --- !u!114 &114973184306540072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,6 +2588,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114980862528321278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Velocidad
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114984159348129794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,7 +2632,7 @@ MonoBehaviour:
   Path: event:/Beer
   guid: 0aacf9634f08ee4e9de40203de6c5ca9
   Banks:
-  - {fileID: 114640303419751372}
+  - {fileID: 114877880934796406}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

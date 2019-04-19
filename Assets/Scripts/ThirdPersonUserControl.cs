@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -78,7 +78,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             
 
         }
-
+        IEnumerator trackPosition() {
+            if (this != null)
+            {
+                TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Position(Tracker.ActorSubjectType.Player, "Level " + SceneManager.GetActiveScene().name, (int)transform.position.x, (int)transform.position.y, (int)transform.position.z));
+                yield return new WaitForSeconds(3.0f);
+            }
+            else
+                yield return null;
+        }
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {

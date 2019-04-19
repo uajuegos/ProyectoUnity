@@ -45,6 +45,9 @@ public class GM : MonoBehaviour {
         camera.GetComponent<SmoothCamera>().enabled = true;
         //gm.musicInstance.start();
         start = true;
+        if (TrackerObject.tr.tracker == null)
+            TrackerObject.tr.tracker = Tracker.Tracker.Instance;
+        TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Init(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
 
         foreach (GameObject go in componentes)
         {
@@ -107,10 +110,12 @@ public class GM : MonoBehaviour {
         mute = !mute;
         if (mute)
         {
+            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.UserDefinedEvent(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Music muted"));
             buttonMute.GetComponent<Image>().sprite = muteSprites[1];
             musicInstance.setVolume(0);
         }else
         {
+            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.UserDefinedEvent(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Music unmuted"));
             buttonMute.GetComponent<Image>().sprite = muteSprites[0];
             musicInstance.setVolume(1);
         }

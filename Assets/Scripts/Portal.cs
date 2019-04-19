@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
+            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Final(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
             SceneManager.LoadScene(scene);
         }
     }
