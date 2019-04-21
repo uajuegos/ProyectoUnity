@@ -6,10 +6,10 @@ using TrackerP3;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [RequireComponent(typeof (ThirdPersonCharacter))]
+    [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
-    { 
-        enum State { ATACK, HUNTING}
+    {
+        enum State { ATACK, HUNTING }
         State state;
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
@@ -40,7 +40,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             SoundManager.sm.SetFMODVector(out pos.up, transform.up);
             SoundManager.sm.SetFMODVector(out pos.forward, transform.forward);
             spellEvent.set3DAttributes(pos);
-   
+
             SoundManager.sm.UpdateSM();
 
             SoundManager.sm.UpdateSM();
@@ -66,7 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (!m_Jump&& start)
+            if (!m_Jump && start)
             {
                 m_Jump = Input.GetButtonDown("Jump");
             }
@@ -77,17 +77,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
         public void Stop()
         {
-            
+
 
         }
-        IEnumerator trackPosition() {
-            if (this != null)
+        IEnumerator trackPosition()
+        {
+            yield return new WaitForSeconds(1.0f);
+            while (true)
             {
                 Tracker.Instance.AddEvent(EventCreator.Position(ActorSubjectType.Player, "Level " + SceneManager.GetActiveScene().name, (int)transform.position.x, (int)transform.position.y, (int)transform.position.z));
                 yield return new WaitForSeconds(3.0f);
             }
-            else
-                yield return null;
         }
         // Fixed update is called in sync with physics
         private void FixedUpdate()
@@ -124,7 +124,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 int atacar = 0;
                 if (atack)
                 {
-                    
+
                     StartCoroutine(StartAttack());
                     ataque = (ataque % 3) + 1;
                     atacar = ataque;
@@ -214,5 +214,5 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             set { start = value; }
         }
     }
-    
+
 }

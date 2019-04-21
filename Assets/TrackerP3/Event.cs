@@ -135,7 +135,7 @@ namespace TrackerP3
         public string ToCSV()
         {
             string CSVString;
-            CSVString = _timeStamp.ToString() + "," + _verb.ToString() + "," + _actor.ToString() + "," + _subject.ToString() + "," + _subject.ToString() + "," + _extra + "\n";
+            CSVString = _timeStamp.ToString() + "," + _verb.ToString() + "," + _actor.ToString() + "," + _subject.ToString() + "," + _extra + "\n";
             return CSVString;
         }
 

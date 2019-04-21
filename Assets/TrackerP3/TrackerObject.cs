@@ -9,6 +9,12 @@ public class TrackerObject : MonoBehaviour
     public PersistenceType PersistenceType;
     public float FlushRate;
 
+    private void Awake()
+    {
+        if (FindObjectsOfType<TrackerObject>().Length > 1)
+            Destroy(this.gameObject);
+    }
+
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);

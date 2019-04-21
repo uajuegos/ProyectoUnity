@@ -84,7 +84,7 @@ namespace TrackerP3
             flushThread = new Thread(FlushRoutine);
             flushThread.Start();
 
-            AddEvent(EventCreator.Init(ActorSubjectType.None, ActorSubjectType.None, ID));
+            AddEvent(EventCreator.Init(ActorSubjectType.Game, ActorSubjectType.Game, ID));
         }
 
         /// <summary>
