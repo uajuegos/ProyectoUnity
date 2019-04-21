@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TrackerP3;
 
 public class MagicCactus : MonoBehaviour {
 
@@ -55,7 +56,7 @@ public class MagicCactus : MonoBehaviour {
                     textPanel.SetActive(false);
                     frase = 0;
                     talking = false;
-                    TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Final(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.NPC, "Conversation with " + gameObject.name));
+                    Tracker.Instance.AddEvent(EventCreator.Final(ActorSubjectType.Player, ActorSubjectType.NPC, "Conversation with " + gameObject.name));
                 }
             }
         }
@@ -75,8 +76,8 @@ public class MagicCactus : MonoBehaviour {
             }
             if (!talking)
             {
-                TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Interact(Tracker.ActorSubjectType.Player,Tracker.ActorSubjectType.NPC));
-                TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Init(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.NPC, "Conversation with " + gameObject.name));
+                Tracker.Instance.AddEvent(EventCreator.Interact(ActorSubjectType.Player,ActorSubjectType.NPC));
+                Tracker.Instance.AddEvent(EventCreator.Init(ActorSubjectType.Player, ActorSubjectType.NPC, "Conversation with " + gameObject.name));
                 textPanel.SetActive(true);
                 if(frases.Length >0)text.text = frases[frase];
                 frase++;

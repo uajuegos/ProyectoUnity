@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TrackerP3;
 
 public class MagicBall : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class MagicBall : MonoBehaviour {
 	
 	public void SpawnBall(Vector3 dir)
     {
-        TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.UserDefinedEvent(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Spell casted"));
+        Tracker.Instance.AddEvent(EventCreator.UserDefinedEvent(ActorSubjectType.Player, ActorSubjectType.None, "Spell casted"));
         Fireball aux = Instantiate(ball, new Vector3(transform.position.x+dir.x, transform.position.y + 1, transform.position.z+dir.z), transform.rotation);
         aux.GetComponent<Rigidbody>().velocity = dir*5;
         aux.name = ball.name;

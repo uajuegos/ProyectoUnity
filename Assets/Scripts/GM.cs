@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TrackerP3;
 
 public class GM : MonoBehaviour {
 
@@ -45,9 +45,8 @@ public class GM : MonoBehaviour {
         camera.GetComponent<SmoothCamera>().enabled = true;
         //gm.musicInstance.start();
         start = true;
-        if (TrackerObject.tr.tracker == null)
-            TrackerObject.tr.tracker = Tracker.Tracker.Instance;
-        TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Init(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
+
+       Tracker.Instance.AddEvent(EventCreator.Init(ActorSubjectType.Player, ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
 
         foreach (GameObject go in componentes)
         {
@@ -110,12 +109,12 @@ public class GM : MonoBehaviour {
         mute = !mute;
         if (mute)
         {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.UserDefinedEvent(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Music muted"));
+            Tracker.Instance.AddEvent(EventCreator.UserDefinedEvent(ActorSubjectType.Player, ActorSubjectType.None, "Music muted"));
             buttonMute.GetComponent<Image>().sprite = muteSprites[1];
             musicInstance.setVolume(0);
         }else
         {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.UserDefinedEvent(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Music unmuted"));
+            Tracker.Instance.AddEvent(EventCreator.UserDefinedEvent(ActorSubjectType.Player, ActorSubjectType.None, "Music unmuted"));
             buttonMute.GetComponent<Image>().sprite = muteSprites[0];
             musicInstance.setVolume(1);
         }

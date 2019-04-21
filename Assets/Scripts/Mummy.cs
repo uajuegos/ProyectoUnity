@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TrackerP3;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Mummy : MonoBehaviour {
@@ -121,7 +122,7 @@ public class Mummy : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Hammer" || other.name == "RigRFoot" || other.name == "Firebola") {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Damage(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.Enemy, "HP: -5"));
+            Tracker.Instance.AddEvent(EventCreator.Damage(ActorSubjectType.Player, ActorSubjectType.Enemy, "HP: -5"));
             StartCoroutine(Hit());
         }
     }
@@ -137,7 +138,7 @@ public class Mummy : MonoBehaviour {
         m_Animator.SetBool("Hit", false);
         if (life <= 0)
         {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Dead(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.Enemy, "Position" + transform.position.ToString()));
+            Tracker.Instance.AddEvent(EventCreator.Dead(ActorSubjectType.Player, ActorSubjectType.Enemy, "Position" + transform.position.ToString()));
             deathInstance.start();
             SoundManager.sm.UpdateSM();
             Destroy(Instantiate(particleSystem, transform.position, transform.rotation), 1.0f);

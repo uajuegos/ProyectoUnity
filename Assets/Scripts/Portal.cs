@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TrackerP3;
 
 public class Portal : MonoBehaviour {
     public string scene;
@@ -14,7 +15,7 @@ public class Portal : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Final(Tracker.ActorSubjectType.Player, Tracker.ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
+            Tracker.Instance.AddEvent(EventCreator.Final(ActorSubjectType.Player, ActorSubjectType.None, "Level " + SceneManager.GetActiveScene().name));
             SceneManager.LoadScene(scene);
         }
     }

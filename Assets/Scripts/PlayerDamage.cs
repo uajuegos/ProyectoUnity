@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
+using TrackerP3;
 
 public class PlayerDamage : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class PlayerDamage : MonoBehaviour
             life += 15;
             if (life > maxLife) life = maxLife;
             lifeSlider.value = (float)life / maxLife;
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Damage(Tracker.ActorSubjectType.Item, Tracker.ActorSubjectType.Player, "HP: +15"));
+            Tracker.Instance.AddEvent(EventCreator.Damage(ActorSubjectType.Item, ActorSubjectType.Player, "HP: +15"));
 
 
             Destroy(other.gameObject);
@@ -44,7 +45,7 @@ public class PlayerDamage : MonoBehaviour
 
         else if (other.gameObject.CompareTag("DeathZone"))
         {
-            TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Dead(Tracker.ActorSubjectType.DeathZone, Tracker.ActorSubjectType.Player, "Position" + transform.position.ToString()));
+            Tracker.Instance.AddEvent(EventCreator.Dead(ActorSubjectType.DeathZone, ActorSubjectType.Player, "Position" + transform.position.ToString()));
             Death();
             
         }
@@ -60,13 +61,13 @@ public class PlayerDamage : MonoBehaviour
                 if (life < 0) life = 0;
                 lifeSlider.value = (float)life / maxLife;
                 block = true;
-                TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Damage(Tracker.ActorSubjectType.Enemy, Tracker.ActorSubjectType.Player, "HP: -5"));
+                Tracker.Instance.AddEvent(EventCreator.Damage(ActorSubjectType.Enemy, ActorSubjectType.Player, "HP: -5"));
                 StartCoroutine(React());
 
                 if (life <= 0)
                 {
                     collision.gameObject.GetComponent<Mummy>().ChangeTarget(c.gameObject);
-                    TrackerObject.tr.tracker.AddEvent(Tracker.EventCreator.Dead(Tracker.ActorSubjectType.Enemy, Tracker.ActorSubjectType.Player, "Position" + transform.position.ToString()));
+                    Tracker.Instance.AddEvent(EventCreator.Dead(ActorSubjectType.Enemy, ActorSubjectType.Player, "Position" + transform.position.ToString()));
                     Death();
                 }
 

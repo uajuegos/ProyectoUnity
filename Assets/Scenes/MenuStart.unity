@@ -3242,6 +3242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3cf5a114329884688a198437a7f26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameName: Beerkings
+  SerializerType: 0
+  PersistenceType: 0
+  FlushRate: 5
 --- !u!4 &1481917878
 Transform:
   m_ObjectHideFlags: 0
